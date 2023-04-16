@@ -1,8 +1,74 @@
 body{
 font-family: Manrope, sans-serif;
-
+background-image: url('../img/jakayla-toney-7S__5PvMaGY-unsplash.jpg');
+background-repeat: no-repeat;
+background-size: cover;
+background-color: #191414;
+color: white;
 }
 
-p{
-    color: aqua;
+/* Header and Navbar  */
+.navbar-custom .nav-item .nav-link{
+    color: white;
+    text-decoration: none;
 }
+
+
+.header-custom{
+    background: linear-gradient(to right, #1d2931, #070a0c);
+    position: relative;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    z-index: 200;
+}
+
+
+.navbar{
+    background: linear-gradient(to right, #1d2931, #070a0c);
+    z-index: 100;
+    position: fixed;
+    left: 0; 
+    right: 0;
+    top: 0;
+    margin-bottom: 0px;
+    
+}
+
+/* Carousel */
+.carousel {
+  position: relative;
+  height: 100%;
+}
+
+.carousel-inner {
+  position: relative;
+  height: 100%;
+}
+
+.carousel-inner img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  filter: invert(1);
+}
+
+/* Adjust the height of the header and carousel */
+.header-custom {
+  min-height: 400px;
+}
+
+.carousel,
+.carousel-inner {
+  height: 100%;
+}
+
+/* END Header and Navbar  */
+
+/* Footer  */
+
+/* END Footer  */

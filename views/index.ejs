@@ -8,18 +8,86 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;700&display=swap" rel="stylesheet">
-    <title>Stacks of Wax</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="index.css">
+    <title>Stacks of Wax</title>
 </head>
 
 <body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-white">
+        <div class="container">
+            <a class="navbar-brand" href="#">Logo</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/collections">Collections</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/sign-up">Sign up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Sign in</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- END navbar -->
     <!-- Header  -->
-    <header>
-        <h1 class="header-title">StacksOfWax</h1>
-        <p class="header-class">Music Collection</p>
-        <button class="header-btn">View Collections</button>
+    <header class="header-custom py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>StacksOfWax</p>
+                    <h1>Celebrating the Magic of Vinyl Collections.</h1>
+                </div>
+                <div class="col-md-6">
+                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="/public/img/gaston-roulstone-kZXq6QOdcNk-unsplash (1).jpg" class="d-block w-100" alt="Image 1">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="/public/img/jakayla-toney-7S__5PvMaGY-unsplash.jpg" class="d-block w-100" alt="Image 2">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </header>
     <!-- END Header  -->
+    <!-- Other sections -->
+    <div class="container">
+
+    </div>
+
+    <!-- Footer  -->
+    <footer class="footer">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/collections">Collections</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Sign up</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Sign in</a>
+            </li>
+        </ul>
+    </footer>
 </body>
 
 </html>

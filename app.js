@@ -10,10 +10,12 @@ const connection = require("./connection");
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 
+//index 
 app.get("/", (req, res) => {
   res.render("index");
 });
 
+//collections
 app.get("/collections", (req, res) => {
   //display collection along with their associated vinyls.
   const query = `
@@ -47,6 +49,16 @@ app.get("/collections", (req, res) => {
       res.render("collections", { collections: Object.values(collections) });
     }
   });
+});
+
+//Sign-up
+app.get("/sign-up",(req,res) =>{
+  res.render("sign-up");
+});
+
+//Login
+app.get("/login",(req,res) =>{
+  res.render("login");
 });
 
 //Start web server - listen to incoming requests on the specified port
