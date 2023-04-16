@@ -1,69 +1,56 @@
-//import mysql
-let mysql = require("mysql");
-let db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "root",
-  database: "stacksofwax",
-  port: "3306",
+//imports express.js library
+const express = require("express");
+
+//create an instance of express.js application and assign it to the variable "app"
+const app = express();
+
+//Imports connection.js module - database connection
+const connection = require("./connection");
+
+app.set("view engine", "ejs");
+app.use(express.static(__dirname + "/public"));
+
+app.get("/", (req, res) => {
+  res.render("index");
 });
 
-db.connect((err) => {
-  if (err) throw err;
-  console.log("database connected successfully");
+app.get("/collections", (req, res) => {
+  //display collection along with their associated vinyls.
+  const query = `
+    SELECT c.collection_id, c.collection_name, c.image as collection_image, v.vinyl_id, v.title AS vinyl_title
+    FROM collection c
+    JOIN vinyl_collections vc ON c.collection_id = vc.collection_id
+    JOIN vinyl v ON vc.vinyl_id = v.vinyl_id;
+  `;
+
+  connection.query(query, (err, results) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send("Error fetching data");
+    } else {
+      const collections = {};
+      results.forEach((result) => {
+        if (!collections[result.collection_id]) {
+          collections[result.collection_id] = {
+            collection_id: result.collection_id,
+            collection_name: result.collection_name,
+            collection_image: result.collection_image,
+            vinyls: [],
+          };
+        }
+        collections[result.collection_id].vinyls.push({
+          vinyl_id: result.vinyl_id,
+          vinyl_title: result.vinyl_title,
+        });
+      });
+
+      res.render("collections", { collections: Object.values(collections) });
+    }
+  });
 });
 
-//import bcrypt
-// const bcrypt = require("bcrypt");
-// const password1 = "password";
-// const password2 = "password_2";
+//Start web server - listen to incoming requests on the specified port
+app.listen(process.env.PORT || 3000, () => {
+  console.log("Server is running at port 3000");
+});
 
-// const saltRounds = 10;
-
-// bcrypt.hash(password1, saltRounds, (err, hash1) => {
-//   if (err) {
-//     // Handle error
-//   }
-
-//   bcrypt.hash(password2, saltRounds, (err, hash2) => {
-//     if (err) {
-//       // Handle error
-//     }
-
-//     //insert genders
-//     const insertGender = `INSERT INTO gender(gender) VALUES('Male'),('Female');`;
-
-//     //insert countries
-//     const insertCountries = `INSERT INTO country(country_name) VALUES('USA'),('CANADA'),('UNITED KINGDOM');`;
-//     const sql = `
-//     INSERT INTO users (username, email, password, first_name, last_name, date_of_birth, gender_id, country_id) VALUES
-//       ('johndoe', 'johndoe@example.com', '${hash1}', 'John', 'Doe', '1990-01-01', 1, 1),
-//       ('janedoe', 'janedoe@example.com', '${hash2}', 'Jane', 'Doe', '1985-05-15', 2, 2);
-//     `;
-
-//     db.query(insertGender, (err, results, fields) => {
-//       if (err) {
-//         console.error(err);
-//         return;
-//       }
-
-//       db.query(insertCountries, (err, results, fields) => {
-//         if (err) {
-//           console.error(err);
-//           return;
-//         }
-
-//         db.query(sql, (error, results, fields) => {
-//           if (error) {
-//             // Handle error
-//             console.error(error);
-//           } else {
-//             console.log("User data inserted successfully");
-//           }
-
-//           db.end();
-//         });
-//       });
-//     });
-//   });
-// });
