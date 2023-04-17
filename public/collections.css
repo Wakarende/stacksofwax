@@ -1,3 +1,45 @@
-body{
+:root {
+    --green: #1DB954;
+    --black: #191414;
+}
+
+
+body {
     font-family: Manrope, sans-serif;
+}
+
+.navbar-custom .search-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.search-input {
+    position: relative;
+    max-width: 300px;
+}
+
+.search-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    padding: 0 1rem;
+}
+
+.sign-up{
+    background-color: var(--green);
+    color: white;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    padding: 1px 10px;
+}
+
+
+/* Footer  */
+.footer{
+    margin-top: 100px;
 }
