@@ -21,8 +21,8 @@ app.get("/collections", (req, res) => {
   const query = `
     SELECT c.collection_id, c.collection_name, c.image as collection_image, v.vinyl_id, v.title AS vinyl_title
     FROM collection c
-    JOIN vinyl_collections vc ON c.collection_id = vc.collection_id
-    JOIN vinyl v ON vc.vinyl_id = v.vinyl_id;
+    LEFT JOIN vinyl_collections vc ON c.collection_id = vc.collection_id
+    LEFT JOIN vinyl v ON vc.vinyl_id = v.vinyl_id;
   `;
 
   connection.query(query, (err, results) => {
@@ -30,6 +30,7 @@ app.get("/collections", (req, res) => {
       console.error(err);
       res.status(500).send("Error fetching data");
     } else {
+      // console.log(results);
       const collections = {};
       results.forEach((result) => {
         if (!collections[result.collection_id]) {
@@ -49,6 +50,15 @@ app.get("/collections", (req, res) => {
       res.render("collections", { collections: Object.values(collections) });
     }
   });
+});
+
+//single collection
+app.get("/collection",(req,res)=>{
+  if(err){
+    console.log(err);
+  }else{
+    res.render("collection");
+  }
 });
 
 //Sign-up
