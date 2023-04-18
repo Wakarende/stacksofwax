@@ -56,6 +56,13 @@ body {
 
 .nav-link {
     cursor: pointer;
+    color: var(--black);
+}
+
+.nav-link:hover{
+    text-decoration: underline;
+    font-weight: 500;
+    color: var(--black);
 }
 
 .sidebar-sticky {
@@ -73,6 +80,7 @@ body {
     /* padding-top: 56px; */
     /* padding-left: 0; */
     margin-top: 150px;
+    margin-bottom: 250px;
 }
 
 
@@ -82,20 +90,21 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    /* flex-basis: calc(25% - 20px); */
-    
-}
-
-.card-flex{
-   display: flex;
-   flex-direction: row;
-   /* align-items: flex-start; */
-   flex-wrap: wrap;
-   column-gap: 20px;
-
+    flex-basis: calc(25% - 20px);
+    width: 250px;
 }
 
 
+.flex{
+    display: flex;
+    column-gap: 30px;
+    flex-wrap: wrap;
+
+}
+
+/* .card-flex{
+    flex-basis: calc(25% - 20px);
+} */
 .card-text{
     padding: 10px;
 }
@@ -104,6 +113,8 @@ body {
     text-decoration: none;
     color: inherit
 }
+
+
 /* MAIN Content media queries  */
 @media (min-width: 768px) {
     .main-content {
@@ -120,6 +131,10 @@ body {
 /* Footer  */
 .footer{
     margin-top: 100px;
+}
+
+.bi:hover{
+    color: var(--green);
 }
 
 

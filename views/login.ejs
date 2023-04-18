@@ -73,7 +73,43 @@
                 </div>
             </nav>
         </div>
-        <div class="main-content"> form </div>
+        <!-- Main Content  -->
+        <div class="main-content">
+             <div class="signin-container p-4 bg-white shadow rounded">
+                 <h2 class="mb-4">Sign In</h2>
+                 <p>Do not have an account? <a href="/sign-up" class="signup-link">Sign up</a></p>
+                 <form action="/login" method="POST">
+                     <div class="mb-3">
+                         <label for="usernameOrEmail" class="form-label">Username or Email address</label>
+                         <input type="text" class="form-control" id="usernameOrEmail" name="usernameOrEmail">
+                     </div>
+                     <div class="mb-3">
+                         <label for="password" class="form-label">Password</label>
+                         <input type="password" class="form-control" id="password" name="password">
+                     </div>
+                     <button type="submit" class="btn form-btn btn-primary">Sign In</button>
+                 </form>
+             </div>
+        </div>
+        <!-- END Content  -->
+        <!-- Footer  -->
+        <div class="container">
+            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top mt-5"
+                style="margin-left: 15rem;">
+                <div class="col-md-4 d-flex align-items-center">
+                    <span class="mb-3 mb-md-0 text-muted">&copy; StacksOfWax</span>
+                </div>
+                <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                    <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-twitter"
+                                style="font-size: 24px;"></i></a></li>
+                    <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-instagram"
+                                style="font-size: 24px;"></i></a></li>
+                    <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-facebook"
+                                style="font-size: 24px;"></i></a></li>
+                </ul>
+            </footer>
+        </div>
+        <!-- END Footer  -->
     </div>
     <!-- Bootstrap Dependencies  -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -86,5 +122,4 @@
         integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous">
     </script>
 </body>
-
 </html>

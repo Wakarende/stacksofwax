@@ -8,6 +8,18 @@ body{
     background-color: var(--grey);
 }
 
+btn{
+    border-radius: 20px;
+}
+
+.logo{
+    width: 100px;
+    height: auto;
+}
+.nav-link{
+    color: var(--black);
+}
+
 .navbar-custom .search-container {
     position: absolute;
     left: 50%;
@@ -77,4 +89,64 @@ body{
 /* Main content  */
 .main-content{
     background-color: --grey;
+    display: flex;
+    justify-content: center;
+}
+
+.signin-container{
+    width: 512px;
+}
+
+.form-btn{
+    background-color: var(--green);
+    border-radius: 20px;
+    width: 160px;
+    padding: 0, 10px;
+    border: solid 1px var(--green);
+}
+
+.form-btn:hover{
+    background-color: white;
+    border: solid 1px var(--green);
+    color: var(--green);
+    border-radius: 20px;
+}
+
+.signup-link{
+    color: var(--green);
+    text-decoration: none;
+}
+
+.signup-link:hover{
+    color: var(--green);
+    text-decoration: underline;
+}
+
+.form-label{
+    color: #acaeaf;
+}
+
+/* Sign up  */
+.signup-card{
+    width: 520px;
+}
+
+.signup-btn{
+    border-radius: 20px;
+    background-color: var(--green);
+    border: solid 1px var(--green);
+}
+
+.signup-btn:hover{
+    background-color: white;
+    border: solid 1px var(--green);
+    color: var(--green);
+}
+
+/* Footer  */
+footer{
+    margin-top: 450px;
+}
+.bi:hover {
+    color: var(--green);
 }
