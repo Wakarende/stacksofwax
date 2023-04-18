@@ -54,11 +54,10 @@ app.get("/collections", (req, res) => {
 
 //single collection
 app.get("/collection",(req,res)=>{
-  if(err){
-    console.log(err);
-  }else{
-    res.render("collection");
-  }
+
+  const collectionId = req.params.collectionId;
+  res.render("collection");
+  
 });
 
 //Sign-up

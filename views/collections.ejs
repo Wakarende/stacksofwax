@@ -73,21 +73,26 @@
         <!-- END Sidebar  -->
         <!-- MAIN content  -->
         <div class="main-content">
-            <% collections.forEach(collection => { %> 
-                <div class="card-flex">
-                    <a href="/collection" class="card-link">
-                        <div class="card" style="width: 200px;">
-                            <img class="card-img-top" src="<%=collection.collection_image %>"alt="collection_image" width="100">
-                            <div class="card-text">
-                                <h5 class="card-title fw-bold"><%= collection.collection_name %></h5>
-                            </div>
-                         <!-- <div class="card-vinyls">
+            <div class="card-container">
+                 <% collections.forEach(collection => { %> 
+                    <div class="card-flex">
+                    <div class="flex">
+                        <a href="/collection" class="card-link">
+                            <div class="card" style="width: 220px;">
+                                <img class="card-img-top img-fluid" src="<%=collection.collection_image %>"
+                                    alt="collection_image" width="100%">
+                                <div class="card-text">
+                                    <h5 class="card-title fw-bold"><%= collection.collection_name %></h5>
+                                </div>
+                                <!-- <div class="card-vinyls">
                             <p> <% collection.vinyls.forEach(vinyl => { %> <%= vinyl.vinyl_title %> <% }) %> </p>
                         </div> -->
-                        </div>
-                    </a>
-            <% }) %>
+                            </div>
+                        </a> <% }) %>
+                    </div>
+                     
                 </div>
+            </div>
         </div>
         <!-- END Main Content  -->
     </div>
