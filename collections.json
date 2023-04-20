@@ -1,0 +1,42 @@
+{
+  "collections": [
+    {
+      "collection_id": 1,
+      "collection_name": "Collection 1",
+      "collection_image": "https://example.com/image1.jpg"
+    },
+    ...
+    {
+      "collection_id": 50,
+      "collection_name": "Collection 50",
+      "collection_image": "https://example.com/image50.jpg"
+    }
+  ],
+  "albums": [
+    {
+      "vinyl_id": 1,
+      "title": "Album 1",
+      "artist_id": 1,
+      "release_year": 2012,
+      "genre_id": 1,
+      "subgenre": 1,
+      "record_company_id": 1
+    },
+    ...
+    {
+      "vinyl_id": 200,
+      "title": "Album 200",
+      "artist_id": 2,
+      "release_year": 2021,
+      "genre_id": 5,
+      "subgenre": 5,
+      "record_company_id": 1
+    }
+  ],
+  "vinyls_collections": [
+    { "vinyl_collections_id": 1, "vinyl_id": 1, "collection_id": 1 },
+    ...
+    { "vinyl_collections_id": 200, "vinyl_id": 200, "collection_id": 50 }
+  ]
+}
+

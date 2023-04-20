@@ -10,6 +10,26 @@ const connection = require("./connection");
 //hash passwords
 const bcrypt = require('bcrypt');
 
+//sessions
+const session = require('express-session');
+
+const oneHour = 60 * 60 * 1000;
+
+//cookies
+const cookieParser = require('cookie-parser');
+
+app.use(session({
+  secret: "stacksofwax",
+  saveUninitialized: true,
+  resave: false,
+  cookie: {maxAge: oneHour},
+}));
+
+// app.use((req, res, next) => {
+//   console.log("Session info:", req.session);
+//   next();
+// });
+
 
 
 app.set("view engine", "ejs");
@@ -22,45 +42,74 @@ app.use(express.static(__dirname + "/public"));
 //parse the form data
 app.use(express.urlencoded({extended: true}));
 
-//index 
+
+// index
 app.get("/", (req, res) => {
-  res.render("index");
+  if (req.session && req.session.authen) {
+    const user = "SELECT * FROM users WHERE user_id = ?";
+    const userId = req.session.authen;
+    connection.query(user, [userId], (err, rows) => {
+      if (err) throw err;
+      let numRows = rows.length;
+      if (numRows > 0) {
+        res.redirect("/collections");
+      } else {
+        res.render("index");
+      }
+    });
+  } else {
+    res.render("index");
+  }
 });
 
-//collections
+
+// collections
 app.get("/collections", (req, res) => {
-  //display collection along with their associated vinyls.
-  const query = `
-    SELECT c.collection_id, c.collection_name, c.image as collection_image, v.vinyl_id, v.title AS vinyl_title
-    FROM collection c
-    LEFT JOIN vinyl_collections vc ON c.collection_id = vc.collection_id
-    LEFT JOIN vinyl v ON vc.vinyl_id = v.vinyl_id;
-  `;
+  if (!req.session.user) {
+    res.redirect("/login");
+    return;
+  }
 
-  connection.query(query, (err, results) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send("Error fetching data");
-    } else {
-      // console.log(results);
-      const collections = {};
-      results.forEach((result) => {
-        if (!collections[result.collection_id]) {
-          collections[result.collection_id] = {
-            collection_id: result.collection_id,
-            collection_name: result.collection_name,
-            collection_image: result.collection_image,
-            vinyls: [],
-          };
-        }
-        collections[result.collection_id].vinyls.push({
-          vinyl_id: result.vinyl_id,
-          vinyl_title: result.vinyl_title,
+  const uid = req.session.user.user_id;
+  // console.log(uid);
+  const user = "SELECT * FROM users WHERE user_id = ?";
+  connection.query(user, [uid], (err, row) => {
+    // console.log(uid);
+    if (err) throw err;
+    const firstrow = row[0];
+
+    // display collection along with their associated vinyls.
+    const query = `
+      SELECT c.collection_id, c.collection_name, c.image as collection_image, v.vinyl_id, v.title AS vinyl_title
+      FROM collection c
+      LEFT JOIN vinyl_collections vc ON c.collection_id = vc.collection_id
+      LEFT JOIN vinyl v ON vc.vinyl_id = v.vinyl_id;
+    `;
+
+    connection.query(query, (err, results) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send("Error fetching data");
+      } else {
+        const collections = {};
+        results.forEach((result) => {
+          if (!collections[result.collection_id]) {
+            collections[result.collection_id] = {
+              collection_id: result.collection_id,
+              collection_name: result.collection_name,
+              collection_image: result.collection_image,
+              vinyls: [],
+            };
+          }
         });
-      });
 
-      res.render("collections", { collections: Object.values(collections) });
-    }
+        console.log(firstrow);
+        res.render("collections", {
+          session: req.session,
+          collections: Object.values(collections),
+        });
+      }
+    });
   });
 });
 
@@ -70,29 +119,19 @@ app.get("/collection",(req,res)=>{
   
 });
 
+
 //Sign-up
 app.get("/sign-up",(req,res) =>{
   res.render("sign-up");
 });
 
+
 //Login
 app.get("/login",(req,res) =>{
-  // let usernameOrEmail = req.body.usernameOrEmail;
-  // let password = req.body.password;
-
-  // let checkuser = 'SELECT * FROM users WHERE (email = ? OR username = ?) AND password = ?';
-
-  // connection.query(checkuser, [usernameOrEmail],[password],(err,results) =>{
-  //   if(err) throw (err);
-  //   let numResults = results.length;
-  //   if(numResults > 0){
-  //     res.send('<code>logged in</code>');
-  //   }else{
-  //     res.send('<code>access denied</code>');
-  //   }
-  // });
+  
   res.render("login");
 });
+
 
 //check login
 app.post("/login", (req, res) => {
@@ -118,7 +157,15 @@ app.post("/login", (req, res) => {
         }
         
         if (match) {
-          res.status(200).json({ message: "Authentication successful" });
+          //set user information in the session
+          req.session.user = {
+            id: user.user_id,
+            username: user.username,
+            email: user.email
+          }
+          //debugging
+          console.log("Session object:", req.session.user);
+          res.redirect('/collections');
         } else {
           res.status(401).json({ message: "Incorrect password" });
         }
@@ -127,6 +174,16 @@ app.post("/login", (req, res) => {
       res.status(404).json({ message: "User not found" });
     }
   });
+});
+
+//logout
+app.get('/logout', (req,res) =>{
+  if(req.session){
+    req.session.destroy((err) =>{
+      if(err)throw err;
+      res.redirect("/");  
+    });
+  }
 });
 
 

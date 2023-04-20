@@ -38,11 +38,11 @@
                             <a class="nav-link" href="/collections">Collections</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="login">Sign in</a>
+                            <a class="nav-link" href="/sign-up">Sign up</a>
                         </li>
                         <li class="nav-item sign-up">
                             <i class="bi bi-person-fill"></i>
-                            <a class="nav-link text-white" href="/sign-up">Sign up</a>
+                            <a class="nav-link text-white" href="/logout">Logout</a>
                         </li>
                     </ul>
                 </div>
@@ -63,9 +63,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#"> Library </a>
                         </li>
+                        <% if (session && session.user) {%>
                         <li class="nav-item">
-                            <a class="nav-link" href="/login"> My Collections </a>
+                            <a class="nav-link" href="#"> <%= session.user.username %> Collections </a>
                         </li>
+                        <% } %>
                     </ul>
                 </div>
             </nav>
