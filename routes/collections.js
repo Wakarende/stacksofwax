@@ -4,6 +4,8 @@ const router = express.Router();
 //Imports connection.js module - database connection
 const connection = require("../connection");
 
+require("dotenv").config();
+
 router.get("/collections", (req, res) => {
   if (!req.session.user) {
     res.redirect("/login");
@@ -41,7 +43,7 @@ router.get("/collections", (req, res) => {
             };
           }
         });
-
+        console.log(collections);
         console.log(firstrow);
         res.render("collections", {
           session: req.session,

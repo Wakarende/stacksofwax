@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 //imports express.js library
 const express = require("express");
 
@@ -42,46 +44,46 @@ app.use(express.static(__dirname + "/public"));
 //parse the form data
 app.use(express.urlencoded({ extended: true }));
 
-
-
 // index
-const landingPage = require('./routes/landingPage');
+const landingPage = require("./routes/landingPage");
 
 //index route
-app.use('/', landingPage);
-
+app.use("/", landingPage);
 
 // collections
-const collections = require('./routes/collections');
-app.use('/',collections);
+const collections = require("./routes/collections");
+app.use("/", collections);
 
 //single collection
 app.get("/collection", (req, res) => {
   res.render("collection");
 });
 
-
 //Sign-up
-const signUp = require('./routes/signUp');
-app.use('/', signUp);
+const signUp = require("./routes/signUp");
+app.use("/", signUp);
 
 //Login
-const loginPage = require('./routes/loginPage');
+const loginPage = require("./routes/loginPage");
 
-app.use('/', loginPage);
+app.use("/", loginPage);
 
 //logout
-const logOut = require('./routes/logOut');
+const logOut = require("./routes/logOut");
 
-app.use('/', logOut);
-
+app.use("/", logOut);
 
 //User Profile
-const profile = require('./routes/profile');
+const profile = require("./routes/profile");
 app.use("/", profile);
+
+//Albums
+const albums = require('./routes/albums');
+app.use('/',albums);
 
 
 //Start web server - listen to incoming requests on the specified port
 app.listen(process.env.PORT || 3000, () => {
   console.log("Server is running at port 3000");
 });
+

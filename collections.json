@@ -1,15 +1,34 @@
 {
-  "collections": [
-    {
+  "collection": [
+     {
       "collection_id": 1,
-      "collection_name": "Collection 1",
-      "collection_image": "https://example.com/image1.jpg"
+      "collection_name": "Chill",
+      "image": "https://marketplace.canva.com/EAEdeiU-IeI/1/0/1600w/canva-purple-and-red-orange-tumblr-aesthetic-chill-acoustic-classical-lo-fi-playlist-cover-jGlDSM71rNM.jpg",
+      "collection_description": "Chill tunes to ease your day"
     },
-    ...
     {
-      "collection_id": 50,
-      "collection_name": "Collection 50",
-      "collection_image": "https://example.com/image50.jpg"
+      "collection_id": 2,
+      "collection_name": "Pop and Rock Classics",
+      "image": "https://i.scdn.co/image/ab67706f0000000317911ac5af6d534478bae66d",
+      "collection_description": "Popular and iconic albums in pop and rock"
+    },
+     {
+      "collection_id": 3,
+      "collection_name": "Rock Mix",
+      "image": "https://i.scdn.co/image/ab67706f00000002412cfd41ea0a8808a68d2b07",
+      "collection_description": "No Rules No Boundaries"
+    },
+    {
+      "collection_id": 4,
+      "collection_name": "R&B",
+      "image": "https://i.pinimg.com/originals/b7/54/6b/b7546bca6cbf4fe7f474d213bb9c6a28.jpg",
+      "collection_description": "My favourite tunes atm"
+    },
+   {
+      "collection_id": 5,
+      "collection_name": "RapCaviar",
+      "image": "https://i.scdn.co/image/ab67706f00000002fc30e8140db8f148cc620710",
+      "collection_description": "Straight Bars"
     }
   ],
   "albums": [

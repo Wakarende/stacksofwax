@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-//Imports connection.js module - database connection
-const connection = require("../connection");
+//import connection.js
+const connection = require('../connection');
 
 //hash passwords
 const bcrypt = require("bcrypt");
+
 
 
 //Login

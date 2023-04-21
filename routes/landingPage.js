@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
+require("dotenv").config();
+
+
+
 // index
 router.get("/", (req, res) => {
   if (req.session && req.session.authen) {
