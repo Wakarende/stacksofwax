@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>singlecollection</title>
+    <title>Collections</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="singlecollection.css">
+    <link rel="stylesheet" href="/singlecollection.css">
 </head>
 
 <body>
@@ -71,29 +71,63 @@
         </div>
         <!-- END Sidebar  -->
         <!-- MAIN content  -->
-        <div class="main-content"> 
-            <h1>ID: <%= collection.collection_id %></h1>
-            <p> name: <%= collection.collection_name %></p>
+        <div class="main-content">
+            <div class="container">
+                    <div class="card mb-3 shadow d-flex align-items-center justify-content-center"
+                        style="max-width: 900px; margin-left: 250px;"> 
+                        <a href="/album">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="<%=collection.image%>" class="img-fluid rounded-circle collection-img" alt="collection_image">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title"><%= collection.collection_name%></h5>
+                                    <p class="card-text"><%=collection.collection_description%></p>
+                                    <p class="card-text"><small class="text-muted"><%=collection.username%></small></p>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                <h2 class="fw-bold">Albums</h2>
+                <div class="row row-cols-1 row-cols-md-4 g-4 mt-3 d-flex align-items-center justify-content-center">
+                    <div class="col ">
+                        <% vinyls.forEach((vinyl) => { %>
+                        <div class="card h-100">
+                            <img class="card-img-top img-fluid" src="<%=vinyl.cover_image %>"
+                                     alt="cover_image" width="100%">
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold"><%= vinyl.title %></h5>
+                                <p><%= vinyl.artist %></p>
+                            </div>
+                        </div>
+                        <% }); %>
+                    </div>   
+                </div>
+            </div>
         </div>
         <!-- END Main Content  -->
-         <!-- Footer  -->
-         <div class="container">
-            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
-                 style="margin-left: 15rem;">
-                 <div class="col-md-4 d-flex align-items-center">
-                     <span class="mb-3 mb-md-0 text-muted">&copy; StacksOfWax</span>
-                 </div>
-                 <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-                     <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-twitter"
-                                 style="font-size: 24px;"></i></a></li>
-                     <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-instagram"
-                                 style="font-size: 24px;"></i></a></li>
-                     <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-facebook"
-                                 style="font-size: 24px;"></i></a></li>
-                 </ul>
+        <!-- Footer  -->
+        <div class="container">
+            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top footer"
+                style="margin-left: 15rem;">
+                <div class="col-md-4 d-flex align-items-center">
+                    <span class="mb-3 mb-md-0 text-muted">&copy; StacksOfWax</span>
+                </div>
+                <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                    <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-twitter"
+                                style="font-size: 24px;"></i></a></li>
+                    <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-instagram"
+                                style="font-size: 24px;"></i></a></li>
+                    <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-facebook"
+                                style="font-size: 24px;"></i></a></li>
+                </ul>
             </footer>
+        </div>
+        <!-- END Footer  -->
     </div>
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

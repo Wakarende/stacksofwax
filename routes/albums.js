@@ -3,7 +3,7 @@ const router = express.Router();
 
 const connection = require('../connection');
 
-router.get('/albums', (req,res) =>{
+router.get('/vinyls', (req,res) =>{
     let allAlbums = `SELECT * FROM vinyl`;
     connection.query(allAlbums,(err,data) =>{
         if(err)throw err;
