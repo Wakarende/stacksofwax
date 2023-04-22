@@ -1,7 +1,7 @@
-const mysql = require("mysql");
+const mysql2 = require("mysql2");
 
 //Imports connection.js module - database connection
-const connection = mysql.createPool({
+const connection = mysql2.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PW,

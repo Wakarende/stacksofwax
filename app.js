@@ -29,10 +29,7 @@ app.use(
   })
 );
 
-// app.use((req, res, next) => {
-//   console.log("Session info:", req.session);
-//   next();
-// });
+
 
 app.set("view engine", "ejs");
 
@@ -51,13 +48,13 @@ const landingPage = require("./routes/landingPage");
 app.use("/", landingPage);
 
 // collections
-const collections = require("./routes/collections");
+const collections = require("./routes/collection");
 app.use("/", collections);
 
 //single collection
-app.get("/collection", (req, res) => {
-  res.render("collection");
-});
+// app.get("/collection", (req, res) => {
+//   res.render("collection");
+// });
 
 //Sign-up
 const signUp = require("./routes/signUp");

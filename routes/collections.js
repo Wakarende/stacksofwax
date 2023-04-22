@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const axios = require('axios');
 
 //Imports connection.js module - database connection
 const connection = require("../connection");
