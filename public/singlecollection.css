@@ -1,0 +1,87 @@
+:root {
+    --green: #1DB954;
+    --black: #191414;
+    --grey: #f7f8f9;
+}
+
+
+body {
+    font-family: Manrope, sans-serif;
+    background-color: var(--grey);
+    line-height: 1.5;
+}
+
+/* /Navbar */
+.navbar-custom .search-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.search-input {
+    position: relative;
+    max-width: 300px;
+}
+
+.search-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    padding: 0 1rem;
+}
+
+.sign-up {
+    background-color: var(--green);
+    color: white;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    padding: 1px 10px;
+}
+
+/* sidebar  */
+#sidebar {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 56px);
+    overflow-y: auto;
+    z-index: 1000;
+    background-color: white;
+}
+
+.nav-link {
+    cursor: pointer;
+    color: var(--black);
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+    font-weight: 500;
+    color: var(--black);
+}
+
+.sidebar-sticky {
+    padding-top: 1rem;
+}
+
+@media (min-width: 768px) {
+    #sidebar {
+        width: 250px;
+    }
+}
+
+
+
+/* Footer  */
+.footer {
+    margin-top: 100px;
+}
+
+.bi:hover {
+    color: var(--green);
+}

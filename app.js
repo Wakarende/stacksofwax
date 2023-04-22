@@ -29,11 +29,7 @@ app.use(
   })
 );
 
-
-
 app.set("view engine", "ejs");
-
-app.use(express.json());
 
 //access the css/images
 app.use(express.static(__dirname + "/public"));
@@ -48,13 +44,12 @@ const landingPage = require("./routes/landingPage");
 app.use("/", landingPage);
 
 // collections
-const collections = require("./routes/collection");
+const collections = require("./routes/collections");
 app.use("/", collections);
 
-//single collection
-// app.get("/collection", (req, res) => {
-//   res.render("collection");
-// });
+// single collection
+const singleCollection = require('./routes/singleCollection');
+app.use("/", singleCollection);
 
 //Sign-up
 const signUp = require("./routes/signUp");
@@ -83,4 +78,5 @@ app.use('/',albums);
 app.listen(process.env.PORT || 3000, () => {
   console.log("Server is running at port 3000");
 });
+
 
