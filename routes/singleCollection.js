@@ -14,7 +14,8 @@ router.get("/collections/:id", (req, res) => {
       if (err) {
         console.log(err);
       } else if (results.length === 0) {
-        res.status(404).json({ error: "Collection not found." });
+        res.send('<small>No vinyls yet!</small>');
+        ;
       } else {
         const collection = results[0];
         

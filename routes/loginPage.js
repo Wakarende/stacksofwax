@@ -49,7 +49,7 @@ router.post("/login", (req, res) => {
             };
             //debugging
             console.log("Session object:", req.session.user);
-            res.redirect("/collections");
+            res.redirect("/profile");
           } else {
             //incorrect password
             res.status(401).json({ message: "Incorrect password" });

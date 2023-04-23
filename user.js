@@ -31,26 +31,15 @@ bcrypt.hash(password1, saltRounds, (err, hash1) => {
       // Handle error
     }
 
-    //insert countries
-    const insertCountries = `INSERT INTO country(country_name) VALUES('USA'),('CANADA'),('UNITED KINGDOM');`;
     const sql = `
     INSERT INTO users (username, email, password, first_name, last_name, date_of_birth, country_id) VALUES
       ('johndoe', 'johndoe@example.com', '${hash1}', 'John', 'Doe', '1990-01-01', 1),
       ('janedoe', 'janedoe@example.com', '${hash2}', 'Jane', 'Doe', '1985-05-15', 2);
     `;
 
-    // db.query(insertGender, (err, results, fields) => {
-    //   if (err) {
-    //     console.error(err);
-    //     return;
-    //   }
+    
 
-    db.query(insertCountries, (err, results, fields) => {
-      if (err) {
-        console.error(err);
-        return;
-      }
-
+   
       db.query(sql, (error, results, fields) => {
         if (error) {
           // Handle error
