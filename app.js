@@ -73,6 +73,9 @@ app.use("/", profile);
 const albums = require('./routes/albums');
 app.use('/',albums);
 
+//create collection
+const createCollection = require('./routes/createCollection');
+app.use('/',createCollection);
 
 //Start web server - listen to incoming requests on the specified port
 app.listen(process.env.PORT || 3000, () => {

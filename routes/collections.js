@@ -49,6 +49,8 @@ router.get("/api/collections", (req, res) => {
       console.error(err);
       res.status(500).json({ error: "Internal Server Error" });
     } else {
+
+      //display collections
       const collections = {};
       results.forEach((result) => {
         if (!collections[result.collection_id]) {
@@ -63,10 +65,11 @@ router.get("/api/collections", (req, res) => {
           collections[result.collection_id].vinyls.push({
             vinyl_id: result.vinyl_id,
             vinyl_title: result.vinyl_title,
+            vinyl_image: result.cover_image,
           });
         }
       });
-      res.json(Object.values(collections));
+      res.status(200).json(Object.values(collections));
     }
   });
 });

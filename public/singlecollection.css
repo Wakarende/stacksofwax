@@ -89,9 +89,10 @@ a{
 }
 
 .card{
-    padding: 20px;
+    padding: 10px;
 }
 
+/* collection and albums card  */
 .collection-img{
     width: 570px;
     height: auto;

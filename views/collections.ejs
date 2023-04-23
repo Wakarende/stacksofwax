@@ -51,7 +51,7 @@
         <!-- END navbar -->
         <!-- Sidebar  -->
         <div class="row">
-            <nav id="sidebar" class="col-md-2 col-lg-1 d-md-block sidebar">
+            <nav id="sidebar" class="col-md-1 col-lg-1 d-md-block sidebar">
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
@@ -75,14 +75,14 @@
         <!-- END Sidebar  -->
         <!-- MAIN content  -->
         <div class="main-content">
-            <div class="row row-cols-1 row-cols-md-4 g-4 mt-3">
+            <div class="card-flex">
                 <% collections.forEach((collection) => { %> <div class="col">
                     <a href="/collections/<%=collection.collection_id%>" class="card-link text-decoration-none">
-                        <div class="card h-100">
+                        <div class="card h-90 custom-card">
                             <img class="card-img-top img-fluid" src="<%=collection.collection_image %>"
                                 alt="collection_image" width="100%">
                             <div class="card-body">
-                                <h5 class="card-title fw-bold"><%= collection.collection_name %></h5>
+                                <p class="card-title fw-bold"><%= collection.collection_name %></p>
                             </div>
                         </div>
                     </a>

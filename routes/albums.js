@@ -11,5 +11,4 @@ router.get('/vinyls', (req,res) =>{
     });
 });
 
-
 module.exports = router;

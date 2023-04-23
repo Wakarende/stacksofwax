@@ -7,8 +7,8 @@
 
 body {
     font-family: Manrope, sans-serif;
-     background-color: var(--grey);
-     line-height: 1.5;
+    background-color: var(--grey);
+    line-height: 1.5;
 }
 
 /* /Navbar */
@@ -33,7 +33,7 @@ body {
     padding: 0 1rem;
 }
 
-.sign-up{
+.sign-up {
     background-color: var(--green);
     color: white;
     display: flex;
@@ -47,7 +47,7 @@ body {
     position: fixed;
     top: 56px;
     left: 0;
-    width: 50%;
+    width: 100%;
     height: calc(100% - 56px);
     overflow-y: auto;
     z-index: 1000;
@@ -59,7 +59,7 @@ body {
     color: var(--black);
 }
 
-.nav-link:hover{
+.nav-link:hover {
     text-decoration: underline;
     font-weight: 500;
     color: var(--black);
@@ -75,7 +75,6 @@ body {
     }
 }
 
-
 /* /main content  */
 .main-content {
     /* padding-top: 56px; */
@@ -84,34 +83,58 @@ body {
     margin-bottom: 250px;
 }
 
-
-.card{
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    /* flex-basis: calc(25% - 20px); */
-}
-
-.card-flex{
-    display: flex; 
-}
-.custom-card{
-    width: 200px;
-    margin: 0 auto;
-}
-/* .card-flex{
-    flex-basis: calc(25% - 20px);
-} */
-.card-text{
-    padding: 5px;
-}
-
-.card-link{
+a {
     text-decoration: none;
-    color: inherit
+    color: var(--black);
+}
+
+.profile-title{
+    margin-left: 280px;
+   
 }
 
 
+.profile-card{
+    padding: 20px;
+}
+
+.collection-card{
+    width: 200px;
+    height: 170px;
+}
+
+/* /Profile image  */
+.collection-img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.bi-plus-square-fill{
+    color: var(--green);
+    transition: transform 0.3s ease-in-out;
+}
+
+.bi-plus-square-fill:hover {
+   transform: scale(2.1);
+  
+}
+
+.card-text:hover{
+    color: black;
+    text-decoration: underline;
+}
+.single-album:hover{
+    color: inherit;
+}
+
+.collections-container{
+    display: flex;
+    column-gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
 /* MAIN Content media queries  */
 @media (min-width: 768px) {
     .main-content {
@@ -120,18 +143,11 @@ body {
 }
 
 
-/* END main content  */
-
-/* //Single collections  */
-
-
 /* Footer  */
-.footer{
+.footer {
     margin-top: 100px;
 }
 
-.bi:hover{
+.bi:hover {
     color: var(--green);
 }
-
-
