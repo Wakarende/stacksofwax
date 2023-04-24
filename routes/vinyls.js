@@ -14,7 +14,7 @@ router.get('/vinyls',(req,res)=>{
       })
       .then((response) => {
         const vinyls = response.data;
-        res.render("vinyls", vinyls);
+        res.render("vinyls", {vinyls : vinyls});
       })
       .catch((err) => {
         console.log(err);
