@@ -23,8 +23,8 @@ router.get("/collections", (req, res) => {
         collections,
       });
     })
-    .catch((error) => {
-      console.error(error);
+    .catch((err) => {
+      console.error(err);
       res.status(500).send("Error fetching collections");
     });
 });

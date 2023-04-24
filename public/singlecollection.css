@@ -89,7 +89,7 @@ a{
 }
 
 .card{
-    padding: 10px;
+    padding: 20px;
 }
 
 /* collection and albums card  */
@@ -97,11 +97,46 @@ a{
     width: 570px;
     height: auto;
 }
+
+/* user info  */
+.bi-person-circle{
+    font-size: 50px;
+    color: darkgray;
+}
+
+.bi-person-circle:hover{
+    color: var(--black);
+}
+.user-flex{
+    display: flex;
+    column-gap: 15px;
+    align-items: center;
+   
+    justify-content: start;
+}
+
+/* Comment section  */
+.comment-section{
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+}
+
+.submit-btn{
+    background-color: var(--grey);
+    border: none;
+}
 /* Footer  */
 .footer {
     margin-top: 100px;
 }
 
-.bi:hover {
+.bi-twitter:hover {
+    color: var(--green);
+}
+.bi-instagram:hover {
+    color: var(--green);
+}
+.bi-facebook:hover {
     color: var(--green);
 }

@@ -39,8 +39,6 @@ app.use(express.urlencoded({ extended: true }));
 
 // index
 const landingPage = require("./routes/landingPage");
-
-//index route
 app.use("/", landingPage);
 
 // collections
@@ -62,16 +60,23 @@ app.use("/", loginPage);
 
 //logout
 const logOut = require("./routes/logOut");
-
 app.use("/", logOut);
 
 //User Profile
 const profile = require("./routes/profile");
 app.use("/", profile);
 
-//Albums
-const albums = require('./routes/albums');
-app.use('/',albums);
+//display all vinyls
+const vinyls = require('./routes/vinyls');
+app.use('/',vinyls);
+
+//add exisitng vinyls to collection
+const addVinylsToCollection = require('./routes/addVinylsToCollection');
+app.use('/',addVinylsToCollection);
+
+//add vinyls
+const addVinyls = require('./routes/addVinyls');
+app.use('/',addVinyls);
 
 //create collection
 const createCollection = require('./routes/createCollection');
@@ -81,5 +86,6 @@ app.use('/',createCollection);
 app.listen(process.env.PORT || 3000, () => {
   console.log("Server is running at port 3000");
 });
+
 
 
