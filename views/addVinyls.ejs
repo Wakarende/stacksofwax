@@ -95,14 +95,12 @@
                         <label for="subgenre" class="form-label">Subgenre</label>
                         <input type="text" class="form-control" id="subgenre" name="subgenre">
                     </div>
-                    <div class="tracks-container">
-                        
+                    <!-- Tracks  -->
+                    <div class="track-container" id="tracksContainer">
                     </div>
-                    <div class="mb-3">
-                        <label for="subgenre" class="form-label">Subgenre</label>
-                        <input type="text" class="form-control" id="subgenre" name="subgenre">
-                    </div>
-                    <button type="submit" class="btn form-btn btn-primary">Create</button>
+                    <button type="button" id="addTrackBtn" class="btn btn-secondary">Add Tracks</button>
+                    <!-- Submit vinyl  -->
+                    <button type="submit" class="btn form-btn btn-primary">Add Vinyl</button>
                 </form>
             </div>
         </div>
@@ -126,6 +124,24 @@
         </div>
         <!-- END Footer  -->
     </div>
+    <script>
+        document.getElementById('addTrackBtn').addEventListener('click', function () { const trackInput = document.createElement('div'); 
+        trackInput.classList.add('track-input'); trackInput.innerHTML = 
+        ` <div
+            class="mb-3">
+            <label class="form-label">Track Name</label>
+            <input type="text" class="form-control" name="trackName[]">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Track Number</label>
+            <input type="number" class="form-control" name="trackNumber[]">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Track Duration</label>
+            <input type="text" class="form-control" name="trackDuration[]">
+        </div> `; 
+        document.getElementById('tracksContainer').appendChild(trackInput); });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
