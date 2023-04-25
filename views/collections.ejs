@@ -72,19 +72,23 @@
         </div>
         <!-- END Sidebar  -->
         <!-- MAIN content  -->
-        <div class="main-content">
-            <div class="card-flex">
-                <% collections.forEach((collection) => { %> <div class="col">
-                    <a href="/collections/<%=collection.collection_id%>" class="card-link text-decoration-none">
-                        <div class="card h-90 custom-card">
-                            <img class="card-img-top img-fluid" src="<%=collection.collection_image %>"
-                                alt="collection_image" width="100%">
-                            <div class="card-body">
-                                <p class="card-title fw-bold"><%= collection.collection_name %></p>
+        <div class="main-content container-fluid">
+            <div class="d-flex justify-content-center">
+                <div class="row card-container gx-1 mb-3 g-4">
+                    <h3 class="fw-bold">Collections</h3> <% collections.forEach((collection) => { %> <div
+                        class="col-md-3">
+                        <a href="/collections/<%=collection.collection_id%>"
+                            class="single-collection text-decoration-none">
+                            <div class="card h-90 custom-card">
+                                <img class="card-img-top img-fluid" src="<%=collection.collection_image %>"
+                                    alt="collection_image" width="100%">
+                                <div class="card-body">
+                                    <p class="card-title fw-bold"><%= collection.collection_name %></p>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </div> <% }) %> 
+                        </a>
+                    </div> <% }) %>
+                </div>
             </div>
         </div>
         <!-- END Main Content  -->

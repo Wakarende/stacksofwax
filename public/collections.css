@@ -92,6 +92,9 @@ body {
     /* flex-basis: calc(25% - 20px); */
 }
 
+.card-container{
+    width: 900px;
+}
 .card-flex{
     display: flex; 
 }

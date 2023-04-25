@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,10 +13,11 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
     <link rel="stylesheet" href="profile.css">
-</head> 
+</head>
+
 <body>
     <div class="container-fluid">
-    <!-- navbar -->
+        <!-- navbar -->
         <nav class="navbar navbar-expand-lg bg-white navbar-custom fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="/">Logo</a>
@@ -71,80 +73,88 @@
         <!-- MAIN content  -->
         <div class="main-content container-fluid">
             <!-- Profile card  -->
-            <div class="card mb-3 shadow profile-card" style="max-width: 880px; margin-left: 280px;">
-              
+            <div class=" col d-flex justify-content-center">
+                <div class="card mb-3 shadow profile-card" style="width:900px">
                     <div class="row g-0">
                         <div class="col-md-4">
-                                <img src="img/jakayla-toney-7S__5PvMaGY-unsplash.jpg" class="img-fluid rounded-circle collection-img"
-                                    alt="collection_image">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <div class="collection-flex mt-5">
+                            <img src="img/jakayla-toney-7S__5PvMaGY-unsplash.jpg"
+                                class="img-fluid rounded-circle collection-img" alt="collection_image">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <div class="collection-flex mt-5">
                                     <h5 class="card-title text-black fw-bold"><%= session.user.username %></h5>
-                                        <a href="/create-collection" class="single-album">
-                                        <small class="card-text  my-3"><i class="bi bi-plus-square-fill  me-2"></i>Create New Collection</small>
-                                        </a>
+                                    <a href="/create-collection" class="single-album">
+                                        <small class="card-text  my-3"><i
+                                                class="bi bi-plus-square-fill  me-2"></i>Create New Collection</small>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
             <!-- END Profile card  -->
-           <!-- Users Collections -->
-           <div class="title">
-               <h5 class="profile-title mt-5 fw-bold">Collections</h5>
-           </div>
-           <div class="justify-content-center mt-5 collections-container"> <% collections.forEach((collection) => { %>
-               <div class="" style="gap: 10px">
-                   <a href="/collections/<%=collection.collection_id%>" class="card-link text-decoration-none">
-                       <div class="card h-100 collection-card">
-                           <img class="card-img-top img-fluid" src="<%=collection.collection_image %>"
-                               alt="collection_image" width="100%">
-                           <div class="card-body">
-                               <h5 class="card-title fw-bold"><%= collection.collection_name %></h5>
-                           </div>
-                       </div>
-                   </a>
-               </div> <% }); %> </div>
-           <!-- END user collections -->
-           <!-- User Vinyls -->
-           <div class="title">
-               <h5 class="profile-title mt-5 fw-bold">Vinyls</h5>
-           </div>
-           <div class="justify-content-center mt-5 collections-container"> 
-               <% uniqueVinyls.forEach((vinyl) => { %> 
-                <div class="" style="gap: 10px">
-                   <div class="card h-100 collection-card">
-                       <img class="card-img-top img-fluid" src="<%= vinyl.vinyl_image %>" alt="vinyl_image"
-                           width="100%">
-                       <div class="card-body">
-                           <h5 class="card-title fw-bold"><%= vinyl.vinyl_title %></h5>
-                       </div>
-                   </div>
-               </div> <% }); %> </div>
-           <!-- END user vinyls --
+            <!-- Users Collections -->
+            <div class="d-flex justify-content-center mt-5 collections-container">
+                <div class="row card-container gx-1 mb-3 g-4"> 
+                    <h3 class="profile-title mt-5 fw-bold">Collections</h3>
+                    <% collections.forEach((collection) => { %> <div
+                        class="col-md-3" style="gap: 10px">
+                        <a href="/collections/<%=collection.collection_id%>" class="card-link text-decoration-none">
+                            <div class="card h-100 collection-card">
+                                <img class="card-img-top img-fluid" src="<%=collection.collection_image %>"
+                                    alt="collection_image" width="100%">
+                                <div class="card-body">
+                                    <h5 class="card-title fw-bold"><%= collection.collection_name %></h5>
+                                </div>
+                            </div>
+                        </a>
+                    </div> <% }); %> </div>
+            </div>
+            <!-- END user collections -->
+            <!-- User Vinyls -->
+            <div class="d-flex justify-content-center">
+                <div class="row card-container gx-1 mb-3 g-4">
+                    <h3 class="profile-title mt-5 fw-bold">Vinyls</h3> 
+                    <% uniqueVinyls.forEach((vinyl) => { %> 
+                        <div class="col-md-3">
+                            <a href="" class="single-album text-decoration-none">
+                                <div class="card h-100 collection-card">
+                                    <img class="card-img-top img-fluid" src="<%= vinyl.vinyl_image %>" alt="vinyl_image"
+                                        width="100%">
+                                    <div class="card-body">
+                                        <h5 class="card-title fw-bold"><%= vinyl.vinyl_title %></h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                     <% }); %>
+                </div>
+            </div>
+            <!-- END user vinyls --
         </div>
         <!-- END Main Content  -->
-        <!-- Footer  -->
-        <div class="container">
-            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
-                style="margin-left: 15rem;">
-                <div class="col-md-4 d-flex align-items-center">
-                    <span class="mb-3 mb-md-0 text-muted">&copy; StacksOfWax</span>
-                </div>
-                <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-                    <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-twitter"
-                                style="font-size: 24px;"></i></a></li>
-                    <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-instagram"
-                                style="font-size: 24px;"></i></a></li>
-                    <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-facebook"
-                                style="font-size: 24px;"></i></a></li>
-                </ul>
-            </footer>
+            <!-- Footer  -->
+            <div class="container">
+                <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
+                    style="margin-left: 15rem;">
+                    <div class="col-md-4 d-flex align-items-center">
+                        <span class="mb-3 mb-md-0 text-muted">&copy; StacksOfWax</span>
+                    </div>
+                    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                        <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-twitter"
+                                    style="font-size: 24px;"></i></a></li>
+                        <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-instagram"
+                                    style="font-size: 24px;"></i></a></li>
+                        <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-facebook"
+                                    style="font-size: 24px;"></i></a></li>
+                    </ul>
+                </footer>
+            </div>
+            <!-- END Footer  -->
         </div>
-        <!-- END Footer  -->
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

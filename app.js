@@ -71,8 +71,8 @@ const vinyls = require('./routes/vinyls');
 app.use('/',vinyls);
 
 //add exisitng vinyls to collection
-const addVinylsToCollection = require('./routes/addVinylsToCollection');
-app.use('/',addVinylsToCollection);
+// const addVinylsToCollection = require('./routes/addVinylsToCollection');
+// app.use('/',addVinylsToCollection);
 
 //add vinyls
 const addVinyls = require('./routes/addVinyls');

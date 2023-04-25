@@ -88,11 +88,6 @@ a {
     color: var(--black);
 }
 
-.profile-title{
-    margin-left: 280px;
-   
-}
-
 
 .profile-card{
     padding: 20px;
@@ -101,6 +96,10 @@ a {
 .collection-card{
     width: 200px;
     height: 170px;
+}
+
+.card-container{
+    width: 900px;
 }
 
 /* /Profile image  */
