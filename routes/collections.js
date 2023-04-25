@@ -5,11 +5,7 @@ const axios = require("axios");
 require("dotenv").config();
 
 router.get("/collections", (req, res) => {
-  if (!req.session.user) {
-    res.redirect("/login");
-    return;
-  }
-
+  
   axios
     .get("http://localhost:3000/api/collections", {
         headers: {
@@ -19,7 +15,6 @@ router.get("/collections", (req, res) => {
     .then((response) => {
       const collections = response.data;
       res.render("collections", {
-        session: req.session,
         collections,
       });
     })
@@ -31,11 +26,7 @@ router.get("/collections", (req, res) => {
 
 
 router.get("/api/collections", (req, res) => {
-  if (!req.session.user) {
-    res.status(401).json({ error: "Unauthorized" });
-    return;
-  }
-
+ 
   // Query to display all collections along with their associated vinyls.
   const query = `
     SELECT c.collection_id, c.collection_name, c.image as collection_image, v.vinyl_id, v.title AS vinyl_title
