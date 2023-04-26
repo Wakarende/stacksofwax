@@ -11,6 +11,24 @@ body {
      line-height: 1.5;
 }
 
+.btn{
+    background-color: var(--green);
+    border: solid 1px var(--green);
+}
+
+.btn:hover{
+    background-color: white;
+    border: solid 1px var(--green);
+    color: var(--green);
+}
+
+.logo{
+    color: black;
+    font-weight: 500;
+}
+.logo:hover{
+    color: black;
+}
 /* /Navbar */
 .navbar-custom .search-container {
     position: absolute;

@@ -76,7 +76,7 @@ router.post("/addVinyls", (req, res) => {
             if (trackName && trackName.length > 0) {
               const insertTrack = `INSERT INTO track(track_name, vinyl_id,track_number,track_duration) VALUES(?,?,?,?);`;
 
-              trackName.forEach((trackName, index) => {
+              trackName.forEach((trackName, index)  => {
                 connection.query(
                   insertTrack,
                   [trackName, vinylId, trackNumber, trackDuration],
@@ -84,7 +84,7 @@ router.post("/addVinyls", (req, res) => {
                     if (err) {
                       console.log(err);
                     }
-                  }
+                  }  
                 );
               });
             }

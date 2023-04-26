@@ -86,7 +86,7 @@
             <hr>
             <!-- New vinyls  -->
             <h2 class="mb-4">Add New Vinyls</h2>
-            <form action="/addVinyls" method="POST">
+            <form action="/collections/<%= collectionId %>/addNewVinyls" method="POST">
                 <div class="mb-3">
                     <label for="vinylName" class="form-label">Vinyl Title</label>
                     <input type="text" class="form-control" id="vinylName" name="vinylName">

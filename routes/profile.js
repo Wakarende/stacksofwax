@@ -41,6 +41,7 @@ router.get("/api/profile/:id", (req, res) => {
   ORDER BY collection.collection_id;
   `;
 
+  
   connection.query(query, [userId], (err, results) => {
     if (err) {
       console.log(err);

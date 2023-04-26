@@ -20,7 +20,7 @@ router.get("/collections/:id", (req, res) => {
     INNER JOIN users ON users.user_id = collections_review.user_id
     WHERE collection_id = ?;`;
 
-  connection.query(query, [collectionId, commentsQuery], (err, results) => {
+  connection.query(query, [collectionId], (err, results) => {
     if (err) {
       console.log(err);
     } else if (results.length === 0) {
@@ -69,10 +69,9 @@ router.post('/collections/:id/comment', (req,res)=>{
       if(err){
         console.log(err);
       }else{
-        res.redirect('/collections/:id');
+        res.redirect(`/collections/${collectionId}`);
       }
   });
 });
-
 
 module.exports = router;

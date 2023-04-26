@@ -87,7 +87,7 @@ router.post('/create-collection',(req,res) => {
 
   //add new vinyls to a specific collection
   // Add new vinyls to a specific collection
-router.post('/collections/:collectionId/addVinyls', (req, res) => {
+router.post('/collections/:collectionId/addNewVinyls', (req, res) => {
   if (!req.session.user) {
     res.redirect('/login');
     return;
@@ -97,7 +97,7 @@ router.post('/collections/:collectionId/addVinyls', (req, res) => {
   const { vinylName, artist, releaseYear, coverImage, genre, subgenre, trackName, trackNumber, trackDuration } = req.body;
   const userId = req.session.user.id;
 
-  const query = `INSERT INTO vinyl (vinyl_name, artist, release_year, cover_image, genre, subgenre, user_id) VALUES (?, ?, ?, ?, ?, ?, ?);`;
+  const query = `INSERT INTO vinyl (title, artist_id, release_year, cover_image, genre_id, subgenre_id, user_id) VALUES (?, ?, ?, ?, ?, ?, ?);`;
   connection.query(query, [vinylName, artist, releaseYear, coverImage, genre, subgenre, userId], (err, results) => {
     if (err) {
       console.log(err);

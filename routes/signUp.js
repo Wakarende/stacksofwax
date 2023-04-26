@@ -46,7 +46,13 @@ router.post("/sign-up", (req, res) => {
               console.log(
                 `${firstName} ${lastName} ${username} ${password} ${birthday} ${genderType}`
               );
-              res.redirect("/login");
+              //log user in by creating session
+              req.session.user = {
+                id: results.insertId,
+                username: username,
+                email: email,
+              }
+              res.redirect("/profile");
             }
           }
         );

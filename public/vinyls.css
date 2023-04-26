@@ -85,9 +85,12 @@ body {
 }
 
 .overlay-dark {
-    background-color: rgba(black, 0.4);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
+.card{
+    overflow: hidden;
+}
 .vinyl-cards{
     width: 170px;
     height: 170px;
