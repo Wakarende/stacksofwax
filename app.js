@@ -49,6 +49,10 @@ app.use("/", collections);
 const singleCollection = require('./routes/singleCollection');
 app.use("/", singleCollection);
 
+//create collection
+const createCollection = require('./routes/createCollection');
+app.use('/',createCollection);
+
 //Sign-up
 const signUp = require("./routes/signUp");
 app.use("/", signUp);
@@ -70,17 +74,14 @@ app.use("/", profile);
 const vinyls = require('./routes/vinyls');
 app.use('/',vinyls);
 
-//add exisitng vinyls to collection
-// const addVinylsToCollection = require('./routes/addVinylsToCollection');
-// app.use('/',addVinylsToCollection);
-
 //add vinyls
 const addVinyls = require('./routes/addVinyls');
 app.use('/',addVinyls);
 
-//create collection
-const createCollection = require('./routes/createCollection');
-app.use('/',createCollection);
+//display single vinyl
+const singleVinyl= require('./routes/singleVinyl');
+app.use('/', singleVinyl);
+
 
 //Start web server - listen to incoming requests on the specified port
 app.listen(process.env.PORT || 3000, () => {

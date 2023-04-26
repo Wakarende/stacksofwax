@@ -76,7 +76,7 @@
                 <div>
                     <label for="existingVinyls">Choose an existing vinyl:</label>
                     <select name="existingVinyls" id="existingVinyls"> <% vinyls.forEach(function(vinyl) { %> 
-                        <option value="<%= vinyl.id %>"><%= vinyl.title %></option> 
+                        <option value="<%= vinyl.vinyl_id %>"><%= vinyl.title %> - <%= vinyl.artist_name%></option> 
                         <% }); %>
                     </select>
                 </div>

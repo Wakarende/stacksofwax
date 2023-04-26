@@ -29,7 +29,8 @@ router.post('/create-collection',(req,res) => {
         console.log(err);
         res.status(500).json({error: "Error adding collection"});
       }else{
-        res.redirect('/collections/:collectionId/add-vinyls');
+        const collectionId = results.insertId;
+        res.redirect(`/collections/${collectionId}/add-vinyls`);
       }
     });  
   });   
@@ -46,7 +47,7 @@ router.post('/create-collection',(req,res) => {
     const userId = req.session.user.id;
 
     //get vinyls owned by user;
-    const query = `SELECT * FROM vinyl WHERE user_id = ?;`;
+    const query = `SELECT * FROM vinyl INNER JOIN artist ON artist.artist_id = vinyl.artist_id WHERE user_id = ?;`;
 
     connection.query(query,[userId],(err,results)=>{
       if(err){
@@ -61,7 +62,7 @@ router.post('/create-collection',(req,res) => {
   //router to add vinyls to collection. Both existing vinyls and new vinyls
   router.post(`/collections/:collectionId/add-vinyls`, (req, res) => {
     if (!req.session.user) {
-      req.redirect("/login");
+      res.redirect("/login");
       return;
     }
 
@@ -72,9 +73,9 @@ router.post('/create-collection',(req,res) => {
       vinylIds = [vinylIds];
     }
 
-    const query = `INSERT INTO vinyl_collections (collection_id,vinyl_id) VALUES(?,?);`;
+    const query = `INSERT INTO vinyl_collections (vinyl_id,collection_id) VALUES(?,?);`;
 
-    connection.query(query, [collectionId, vinylIds], (err, results) => {
+    connection.query(query, [vinylIds, collectionId], (err, results) => {
       if (err) {
         console.log(err);
       } else {
@@ -115,8 +116,8 @@ router.post('/collections/:collectionId/addVinyls', (req, res) => {
             }
           });
         } else {
-          const addToCollectionQuery =`INSERT INTO vinyl_collections (collection_id, vinyl_id) VALUES (?, ?);`;
-          connection.query(addToCollectionQuery, [collectionId, vinylId], (err) => {
+          const addToCollectionQuery =`INSERT INTO vinyl_collections (vinyl_id, collection_id) VALUES (?, ?);`;
+          connection.query(addToCollectionQuery, [vinylId, collectionId], (err) => {
             if (err) {
               console.log(err);
               res.status(500).json({ error: 'Error adding vinyl to collection' });
@@ -131,6 +132,5 @@ router.post('/collections/:collectionId/addVinyls', (req, res) => {
     }
   });
 });
-
 
 module.exports = router;
