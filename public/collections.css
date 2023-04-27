@@ -93,7 +93,24 @@ body {
     }
 }
 
+/* Navbar responsivity */
 
+.offcanvas-collapse{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    transition: transform .3s ease-in-out;
+}
+
+.offcanvas-collapse.open{
+    transform: translateX(-100%);
+}
+
+@media(min-width: 786px){
+    .offcanvas-collapse{
+        transform: translateX(0);
+    }
+}
 /* /main content  */
 .main-content {
     /* padding-top: 56px; */
