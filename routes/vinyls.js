@@ -3,18 +3,22 @@ const router = express.Router();
 const axios = require('axios');
 const connection = require('../connection');
 
-//vinlys api
+//vinyls api
 router.get('/vinyls',(req,res)=>{
-    
+  let genreParam = "";
+
+  if(req.query.genre){
+    genreParam = '?genre=' + req.query.genre;
+  }
     axios
-      .get("http://localhost:3000/api/vinyls", {
+      .get("http://localhost:3000/api/vinyls" + genreParam, {
         headers: {
           Cookie: req.headers.cookie,
         },
       })
       .then((response) => {
         const vinyls = response.data;
-        res.render("vinyls", {vinyls : vinyls});
+        res.render("vinyls", { vinyls: vinyls });
       })
       .catch((err) => {
         console.log(err);
@@ -23,11 +27,17 @@ router.get('/vinyls',(req,res)=>{
 });
 
 
-
 //get all vinyls
 router.get('/api/vinyls', (req,res) =>{
     //display all albums
-    const query = `SELECT * FROM vinyl`;
+    let query = `SELECT * FROM vinyl 
+LEFT JOIN vinyl_genres AS vg1 ON vinyl.genre_id = vg1.genre_id 
+LEFT JOIN vinyl_genres AS vg2 ON vinyl.subgenre_id = vg2.genre_id `;
+
+    //check if sort parameter is provided
+    if(req.query.genre){
+      query += `WHERE (vg1.genre_name = '${req.query.genre}' OR vg2.genre_name = '${req.query.genre}');`;
+    }
     connection.query(query,(err,results) =>{
         if(err){
             console.log(err);
