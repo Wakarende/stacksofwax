@@ -5,22 +5,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Single Vinyl</title>
+    <title>Single Collection</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="/singlecollection.css">
 </head>
 
 <body>
-    <div class="container-fluid">
+    <div class="container-fluid  d-flex flex-column min-vh-100">
         <!-- navbar -->
         <nav class="navbar navbar-expand-lg bg-white navbar-custom fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="/">Logo</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
+                    aria-controls="sidebar">
+                    <span class="navbar-toggler-icon">
+                        <i class="bi bi-list"></i>
+                    </span>
+                </button>
+                <a class="navbar-brand d-none d-lg-block" href="/">StacksOfWax</a>
                 <div class="search-container">
                     <form class="d-flex">
                         <div class="search-input">
@@ -51,7 +57,8 @@
         <!-- END navbar -->
         <!-- Sidebar  -->
         <div class="row">
-            <nav id="sidebar" class="col-md-2 col-lg-1 d-md-block sidebar">
+            <nav id="sidebar" class="col-md-2 col-lg-1 d-md-block sidebar offcanvas-collapse">
+                <a href="/" class="navbar-brand d-lg-none">StacksOfWax</a>
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
@@ -61,22 +68,63 @@
                             <a class="nav-link" href="/collections"> Collections </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"> Library </a>
-                        </li> <% if (session && session.user) {%> <li class="nav-item">
-                            <a class="nav-link" href="/profile"> <%= session.user.username %> Collections </a>
-                        </li> <% } %>
+                            <a class="nav-link" href="/profile"> My Library</a>
+                        </li>
+                    </ul>
+                    <ul class="nav flex-column d-lg-none">
+                        <li class="nav-item">
+                            <a href="/collections" class="nav-link">Collections</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/sign-up" class="nav-link">Sign up</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/logout" class="nav-link">Logout</a>
+                        </li>
                     </ul>
                 </div>
             </nav>
         </div>
         <!-- END Sidebar  -->
         <!-- MAIN content  -->
-        <div class="main-content">
+        <div class="main-content container-fluid">
+            <!-- Album and Vinyls  -->
+            <div class="container d-flex justify-content-center">
+                <div class="card shadow mb-5" style="width:900px; height: auto; margin-left:250px;" >
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="<%=vinyl.cover_image%>" class="img-fluid card-img" alt="album_image" style="width:270px; height:270px">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-body">
+                                <h1 class="card-title fw-bold"><%= vinyl.title%></h1>
+                                <p class="card-text text-muted">Artist</p>
+                                <p class="card-text text-muted">Number of tracks: </p>
+                        </div>
+                    </div>
+                    <div class="mt-5"> <% tracks.forEach((track) => { %>      <ul class="list-unstyled">
+                                <li class="d-flex align-items-center border-bottom pb-2 mb-2">
+                                    <span class="me-2"><%= track.track_number %></span>
+                                    <i class="bi bi-plus-square me-2"></i>
+                                    <div>
+                                        <p class="mb-0"><%= track.track_name %></p>
+                                    </div>
+                                    <span class="ms-auto"><%= track.track_duration %></span>
+                                </li>
+                            </ul> 
+                  <% }); %>
+                    </div>
+                </div>
+                <!-- END Collection and Albums -->
+            </div>
         </div>
-        <!-- END Main Content  -->
+       <!-- USER AND COMMENTS  -->
+                <!-- User info -->
+                <!-- END User info  -->  
+         <!-- END Main Content  -->
         <!-- Footer  -->
         <div class="container-fluid">
-            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
+            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top footer"
                 style="margin-left: 15rem;">
                 <div class="col-md-4 d-flex align-items-center">
                     <span class="mb-3 mb-md-0 text-muted">&copy; StacksOfWax</span>
@@ -93,7 +141,15 @@
         </div>
         <!-- END Footer  -->
     </div>
+     <!-- media queries navbar -->
+     <script>
+         document.addEventListener('DOMContentLoaded', function () {
+             document.querySelector('[data-bs-toggle="offcanvas"]').addEventListener('click', function () {
+                 document.querySelector('.offcanvas-collapse').classList.toggle('open')
+             })
+         })
+     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+</html> 
 
-</html>

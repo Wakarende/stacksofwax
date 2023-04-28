@@ -3,10 +3,10 @@ const router = express.Router();
 const connection = require("../connection");
 
 router.get("/collections/:id", (req, res) => {
-  if (!req.session.user) {
-    res.redirect("/login");
-    return;
-  }
+  // if (!req.session.user) {
+  //   res.redirect("/login");
+  //   return;
+  // }
 
   const collectionId = req.params.id;
   const query = `SELECT DISTINCT * 

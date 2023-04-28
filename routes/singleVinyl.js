@@ -12,6 +12,7 @@ router.get('/vinyls/:id',(req,res)=>{
     const vinylId = req.params.id;
     const query = `SELECT DISTINCT * 
                     FROM vinyl INNER JOIN track ON track.vinyl_id = vinyl.vinyl_id INNER join users ON users.user_id = vinyl.user_id
+                    INNER join artist ON artist.artist_id = vinyl.vinyl_id
                     WHERE vinyl.vinyl_id = ?;`;
 
 
@@ -20,7 +21,26 @@ router.get('/vinyls/:id',(req,res)=>{
             console.log(err);
         }else{
             const vinyl = results[0];
-            res.render('singleVinyl',{session:req.session,vinyl});
+            console.log(vinyl)
+            // display tracks 
+            const tracks = [];
+            const uniqueTrackId = [];
+
+            results.forEach((item) =>{
+                if(!uniqueTrackId.includes(item.track_id)){
+                    uniqueTrackId.push(item.track_id);
+                    tracks.push(item);
+                }
+            });
+            if(results.length > 0 ) {
+                 res.render("singleVinyl", {
+                   session: req.session,
+                   vinyl,
+                   tracks,
+                 });
+            }else{
+                console.log("No results found for this vinyl id.");
+            }
         }
     });
 });

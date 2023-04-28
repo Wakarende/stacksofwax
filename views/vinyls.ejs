@@ -103,7 +103,7 @@
                     <h3 class="fw-bold">Vinyls</h3>
                     <%vinyls.forEach((vinyl) => {%>
                     <div class="col-md-3"> 
-                        <a href="#" class="singleAlbum">
+                        <a href="/vinyls/<%=vinyl.vinyl_id%>" class="singleAlbum">
                             <div class="card  text-white vinyl-cards">
                                 <img class="card-img" src="<%=vinyl.cover_image%>" alt="Card image">
                                 <div class="card-img-overlay overlay-dark d-flex flex-column justify-content-end">
