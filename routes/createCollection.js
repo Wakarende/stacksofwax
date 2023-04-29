@@ -85,52 +85,52 @@ router.post('/create-collection',(req,res) => {
   });
 
 
-  //add new vinyls to a specific collection
-  // Add new vinyls to a specific collection
-router.post('/collections/:collectionId/addNewVinyls', (req, res) => {
-  if (!req.session.user) {
-    res.redirect('/login');
-    return;
-  }
+//   //add new vinyls to a specific collection
+//   // Add new vinyls to a specific collection
+// router.post('/collections/:collectionId/addNewVinyls', (req, res) => {
+//   if (!req.session.user) {
+//     res.redirect('/login');
+//     return;
+//   }
 
-  const collectionId = req.params.collectionId;
-  const { vinylName, artist, releaseYear, coverImage, genre, subgenre, trackName, trackNumber, trackDuration } = req.body;
-  const userId = req.session.user.id;
+//   const collectionId = req.params.collectionId;
+//   const { vinylName, artist, releaseYear, coverImage, genre, subgenre, trackName, trackNumber, trackDuration } = req.body;
+//   const userId = req.session.user.id;
 
-  const query = `INSERT INTO vinyl (title, artist_id, release_year, cover_image, genre_id, subgenre_id, user_id) VALUES (?, ?, ?, ?, ?, ?, ?);`;
-  connection.query(query, [vinylName, artist, releaseYear, coverImage, genre, subgenre, userId], (err, results) => {
-    if (err) {
-      console.log(err);
-      res.status(500).json({ error: 'Error adding vinyl' });
-    } else {
-      const vinylId = results.insertId;
-      const insertTracks = (index) => {
-        if (index < trackName.length) {
-          const trackQuery = `INSERT INTO tracks (track_name, track_number, track_duration, vinyl_id) VALUES (?, ?, ?, ?);`;
-          connection.query(trackQuery, [trackName[index], trackNumber[index], trackDuration[index], vinylId], (err) => {
-            if (err) {
-              console.log(err);
-              res.status(500).json({ error: 'Error adding tracks' });
-            } else {
-              insertTracks(index + 1);
-            }
-          });
-        } else {
-          const addToCollectionQuery =`INSERT INTO vinyl_collections (vinyl_id, collection_id) VALUES (?, ?);`;
-          connection.query(addToCollectionQuery, [vinylId, collectionId], (err) => {
-            if (err) {
-              console.log(err);
-              res.status(500).json({ error: 'Error adding vinyl to collection' });
-            } else {
-              res.redirect(`/collections/${collectionId}/add-vinyls`);
-            }
-          });
-        }
-      };
+//   const query = `INSERT INTO vinyl (title, artist_id, release_year, cover_image, genre_id, subgenre_id, user_id) VALUES (?, ?, ?, ?, ?, ?, ?);`;
+//   connection.query(query, [vinylName, artist, releaseYear, coverImage, genre, subgenre, userId], (err, results) => {
+//     if (err) {
+//       console.log(err);
+//       res.status(500).json({ error: 'Error adding vinyl' });
+//     } else {
+//       const vinylId = results.insertId;
+//       const insertTracks = (index) => {
+//         if (index < trackName.length) {
+//           const trackQuery = `INSERT INTO tracks (track_name, track_number, track_duration, vinyl_id) VALUES (?, ?, ?, ?);`;
+//           connection.query(trackQuery, [trackName[index], trackNumber[index], trackDuration[index], vinylId], (err) => {
+//             if (err) {
+//               console.log(err);
+//               res.status(500).json({ error: 'Error adding tracks' });
+//             } else {
+//               insertTracks(index + 1);
+//             }
+//           });
+//         } else {  
+//           const addToCollectionQuery =`INSERT INTO vinyl_collections (vinyl_id, collection_id) VALUES (?, ?);`;
+//           connection.query(addToCollectionQuery, [vinylId, collectionId], (err) => {
+//             if (err) {
+//               console.log(err);
+//               res.status(500).json({ error: 'Error adding vinyl to collection' });
+//             } else {
+//               res.redirect(`/collections/${collectionId}/add-vinyls`);
+//             }
+//           });
+//         }
+//       };
 
-      insertTracks(0);
-    }
-  });
-});
+//       insertTracks(0);
+//     }
+//   });
+// });
 
 module.exports = router;

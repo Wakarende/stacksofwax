@@ -99,7 +99,8 @@
                             <div class="card-body">
                                 <h1 class="card-title fw-bold"><%= collection.collection_name%></h1>
                                 <p class="card-text text-muted"><%=collection.collection_description%></p>
-                                <p class="card-text text-muted">Number of tracks: </p>
+                                <a class="card-text add-vinyl" href="/collections/<%=collection.collection_id%>/add-vinyls"><i
+                                        class="bi bi-file-plus-fill"></i> Add Vinyl</a>
                         </div>
                     </div>
                     <div class="mt-5"> <% vinyls.forEach((vinyl) => { %>      <ul class="list-unstyled">

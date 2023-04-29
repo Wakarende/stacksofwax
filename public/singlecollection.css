@@ -118,6 +118,16 @@ a{
     height: auto;
 }
 
+.bi-file-plus-fill:hover{
+    color: var(--green);
+    text-decoration: underline;
+}
+
+.add-vinyl:hover{
+    color: var(--green);
+    text-decoration: underline;
+}
+
 /* user info  */
 .bi-person-circle{
     font-size: 50px;
