@@ -6,7 +6,7 @@ const session = require("express-session");
 
 
 //add tracks to existing albums
-router.get('/:vinylId/add-tracks',(req,res)=>{
+router.get('/vinyls/:vinylId/add-tracks',(req,res)=>{
     if(!req.session.user){
         res.redirect('/login');
         return;
@@ -22,7 +22,7 @@ router.get('/:vinylId/add-tracks',(req,res)=>{
 
 
 
-router.post('/:vinylId/add-tracks',(req,res)=>{
+router.post('/vinyls/:vinylId/add-tracks',(req,res)=>{
     const vinylId  = req.params.vinylId;
 
     const query = `INSERT INTO track(track_name, vinyl_id,track_number,track_duration) VALUES(?,?,?,?);`;
@@ -36,3 +36,5 @@ router.post('/:vinylId/add-tracks',(req,res)=>{
         }
     });
 });
+
+module.exports = router;

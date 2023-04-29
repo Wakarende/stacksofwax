@@ -12,7 +12,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="collections.css">
+    <link rel="stylesheet" href="/collections.css">
 </head>
 
 <body>
@@ -76,25 +76,28 @@
             </nav>
         </div>
         <!-- MAIN content  -->
-        <form action="/vinyls/:vinylId/add-tracks" method="POST">
-            <!-- Tracks  -->
-            <div class="track-container" id="tracksContainer">
-            </div>
-            <button type="button" id="addTrackBtn" class="btn btn-primary form-btn mb-3">Add Tracks</button>
-            <br>
-            <!-- Submit vinyl  -->
-            <button type="submit" class="btn form-btn btn-primary">Add Vinyl</button>
-        </form>
+        <div class="container d-flex justify-content-center">
+             <form action="/vinyls/:vinylId/add-tracks" method="POST" class="" style="margin-top: 150px;">
+                 <!-- Tracks  -->
+                 <div class="track-container" id="tracksContainer">
+                 </div>
+                 <button type="button" id="addTrackBtn" class="btn btn-primary form-btn mb-3">Create Tracks</button>
+                 <br>
+                 <!-- Submit vinyl  -->
+                 <button type="submit" class="btn form-btn btn-primary">Add Tracks</button>
+             </form>
+        </div>
         <!-- END Main Content  -->
+        <!-- Footer  -->
         <!-- Footer  -->
         <div class="container-fluid">
             <footer
-                class="sticky-footer d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top footer"
-                 style="margin-left: 15rem;">
+                class="fixed-bottom d-flex flex-wrap justify-content-between align-items-center py-3 my-4 footer border-top w-50 mx-auto"
+                ">
                 <div class="col-md-4 d-flex align-items-center">
-                    <span class="mb-3 mb-md-0 text-muted">&copy; StacksOfWax</span>
+                    <span class="mb-3 mb-md-0 text-muted ms-5">&copy; StacksOfWax</span>
                 </div>
-                <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                <ul class="nav col-md-4 justify-content-end list-unstyled d-flex me-5">
                     <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-twitter"
                                 style="font-size: 24px;"></i></a></li>
                     <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-instagram"
@@ -105,7 +108,9 @@
             </footer>
         </div>
         <!-- END Footer  -->
-    </div> media queries navbar <script>
+    </div>
+    <!-- Media queries  -->
+     <script>
         document.addEventListener('DOMContentLoaded', function () {
             document.querySelector('[data-bs-toggle="offcanvas"]').addEventListener('click', function () {
                 document.querySelector('.offcanvas-collapse').classList.toggle('open')
@@ -128,7 +133,8 @@
         <div class="mb-3">
             <label class="form-label">Track Duration</label>
             <input type="text" class="form-control" name="trackDuration[]">
-        </div> `;
+        </div> 
+        <hr>`;
             document.getElementById('tracksContainer').appendChild(trackInput);
         });
     </script>

@@ -82,6 +82,9 @@ app.use('/',addVinyls);
 const singleVinyl= require('./routes/singleVinyl');
 app.use('/', singleVinyl);
 
+//add track to existing vinyls
+const addTrackToVinyl = require('./routes/addTrackToVinyl');
+app.use('/', addTrackToVinyl);
 
 //Start web server - listen to incoming requests on the specified port
 app.listen(process.env.PORT || 3000, () => {
