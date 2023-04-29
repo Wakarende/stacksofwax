@@ -35,7 +35,7 @@ router.post('/create-collection',(req,res) => {
     });  
   });   
 
-  //route to add vinyls to newly created collection. Also displays existing user vinyls.
+  //route to add vinyls to created collection. Also displays existing user vinyls.
   router.get('/collections/:collectionId/add-vinyls',(req,res)=>{
 
     if(!req.session.user){

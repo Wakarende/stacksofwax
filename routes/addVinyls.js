@@ -76,26 +76,25 @@ router.post("/addVinyls", (req, res) => {
             if (trackName && trackName.length > 0) {
               const insertTrack = `INSERT INTO track(track_name, vinyl_id,track_number,track_duration) VALUES(?,?,?,?);`;
 
-              trackName.forEach((trackName, index)  => {
+              for(let i = 0; i < trackName.length; i++) {
                 connection.query(
                   insertTrack,
-                  [trackName, vinylId, trackNumber, trackDuration],
+                  [trackName[i], vinylId, trackNumber[i], trackDuration[i]],
                   (err, results) => {
                     if (err) {
                       console.log(err);
                     }
                   }  
                 );
-              });
+              };
             }
-            res.redirect("/vinyls");
+            res.redirect("/profile");
           }
         );
       });
     });
   });
 });
-
 module.exports = router;
 
 

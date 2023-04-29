@@ -10,9 +10,9 @@ router.get('/vinyls/:id',(req,res)=>{
 
 
     const vinylId = req.params.id;
-    const query = `SELECT DISTINCT * 
+    const query = `SELECT * 
                     FROM vinyl INNER JOIN track ON track.vinyl_id = vinyl.vinyl_id INNER join users ON users.user_id = vinyl.user_id
-                    INNER join artist ON artist.artist_id = vinyl.vinyl_id
+                    INNER join artist ON artist.artist_id = vinyl.artist_id
                     WHERE vinyl.vinyl_id = ?;`;
 
 
@@ -32,6 +32,10 @@ router.get('/vinyls/:id',(req,res)=>{
                     tracks.push(item);
                 }
             });
+
+            console.log("vinylId:", vinylId);
+            console.log("results:", results);
+
             if(results.length > 0 ) {
                  res.render("singleVinyl", {
                    session: req.session,
