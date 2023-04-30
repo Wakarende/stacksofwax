@@ -102,6 +102,16 @@
                                 <a class="card-text add-vinyl" href="/collections/<%=collection.collection_id%>/add-vinyls"><i
                                         class="bi bi-file-plus-fill"></i> Add Vinyl</a>
                         </div>
+                        <div class="col-md-6">
+                            <form id="delete-collection-form" action="/collections/<%= collectionId %>?_method=DELETE"
+                                method="POST" style="display: none;">
+                                <input type="hidden" name="_method" value="DELETE">
+                            </form>
+                            <button class="btn delete-btn"
+                                onclick="document.getElementById('delete-collection-form').submit();"><i
+                                    class="bi bi-trash me-2"></i>Delete
+                                Collection</button>
+                        </div>
                     </div>
                     <div class="mt-5"> <% vinyls.forEach((vinyl) => { %>      <ul class="list-unstyled">
                                 <li class="d-flex align-items-center border-bottom pb-2 mb-2">

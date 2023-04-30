@@ -20,6 +20,11 @@ const oneHour = 60 * 60 * 1000;
 //cookies
 const cookieParser = require("cookie-parser");
 
+//method override
+const methodOverride = require("method-override");
+app.use(methodOverride("_method"));
+
+
 app.use(
   session({
     secret: "stacksofwax",

@@ -53,7 +53,7 @@ router.get("/collections/:id", (req, res) => {
             session: req.session,
             collection,
             vinyls,
-            comments,
+            comments, collectionId
           });
         }
       });
@@ -100,6 +100,38 @@ router.post("/collections/:id/comment/:comment_id/like", (req, res) => {
           console.log(err);
         } else {
           res.redirect(`/collections/${id}`);
+        }
+      });
+    }
+  });
+});
+
+
+//Delete collection
+router.delete('/collections/:collectionId',(req,res)=>{
+  if(!req.session.user){
+    res.redirect('/login');
+    return;
+  }
+
+
+  const collectionId = req.params.collectionId;
+  //query to delete collection from vinyl_collections table
+  const deleteVinylCollections= `DELETE FROM vinyl_collections WHERE collection_id = ?`;
+
+  connection.query(deleteVinylCollections, collectionId, (err,results) =>{
+    if(err){
+      console.log(err);
+    }else{
+      //query to delete collection from collection table
+      const deleteCollection = `DELETE FROM collection where collection_id = ? AND user_id = ?;`;
+
+      connection.query(deleteCollection, [collectionId,req.session.user.id],(err,results)=>{
+        if(err){
+          console.log(err);
+        }else{
+          // res.send('Collection deleted successfully');
+          res.redirect('/profile');
         }
       });
     }
