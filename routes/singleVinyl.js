@@ -8,7 +8,6 @@ router.get('/vinyls/:id',(req,res)=>{
         return;
     }
 
-
     const vinylId = req.params.id;
     const query = `SELECT * 
                     FROM vinyl INNER JOIN track ON track.vinyl_id = vinyl.vinyl_id INNER join users ON users.user_id = vinyl.user_id
@@ -40,7 +39,7 @@ router.get('/vinyls/:id',(req,res)=>{
                  res.render("singleVinyl", {
                    session: req.session,
                    vinyl,
-                   tracks,
+                   tracks,vinylId
                  });
             }else{
                 console.log("No results found for this vinyl id.");
@@ -48,6 +47,49 @@ router.get('/vinyls/:id',(req,res)=>{
         }
     });
 });
+
+// Delete vinyl
+router.delete('/vinyls/:vinylId', (req, res) => {
+  if (!req.session.user) {
+    res.redirect('/login');
+    return;
+  }
+
+  const vinylId = req.params.vinylId;
+  const userId = req.session.user.id;
+
+  //delete tracks associated with the vinyl
+  const deleteTracks = `DELETE FROM track WHERE vinyl_id = ?;`;
+
+  connection.query(deleteTracks, [vinylId], (err, results) => {
+    if (err) {
+      console.log(err);
+      return;
+    }
+ 
+    //delete from vinyl_collections 
+    const deleteVinylCollections = `DELETE FROM vinyl_collections WHERE vinyl_id = ?;`;
+
+    connection.query(deleteVinylCollections, [vinylId], (err, results) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+
+      // delete vinyl from vinyl table
+      const deleteVinyl = `DELETE FROM vinyl WHERE vinyl_id = ? AND user_id = ?;`;
+
+      connection.query(deleteVinyl, [vinylId, userId], (err, results) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.redirect('/profile');
+        }
+      });
+    });
+  });
+});
+
 
 module.exports = router;
 

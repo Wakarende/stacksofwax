@@ -3,10 +3,6 @@ const router = express.Router();
 const connection = require("../connection");
 
 router.get("/collections/:id", (req, res) => {
-  // if (!req.session.user) {
-  //   res.redirect("/login");
-  //   return;
-  // }
 
   const collectionId = req.params.id;
   const query = `SELECT DISTINCT * 
@@ -28,7 +24,7 @@ router.get("/collections/:id", (req, res) => {
     if (err) {
       console.log(err);
     } else if (results.length === 0) {
-      // res.render('collection');
+      res.redirect(`/collections/${collectionId}/add-vinyls`);
     } else {
       const collection = results[0];
 
@@ -102,6 +98,28 @@ router.post("/collections/:id/comment/:comment_id/like", (req, res) => {
           res.redirect(`/collections/${id}`);
         }
       });
+    }
+  });
+});
+
+
+// Update collection name
+router.put('/collections/:collectionId', (req, res) => {
+  if (!req.session.user) {
+    res.redirect('/login');
+    return;
+  }
+
+  const collectionId = req.params.collectionId;
+  const newCollectionName = req.body.name; // new name
+
+  const updateCollection = `UPDATE collection SET collection_name = ? WHERE collection_id = ? AND user_id = ?;`;
+
+  connection.query(updateCollection, [newCollectionName, collectionId, req.session.user.id], (err, results) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.redirect(`/collections/${collectionId}`);
     }
   });
 });

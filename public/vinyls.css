@@ -4,7 +4,14 @@
     --grey: #f7f8f9;
 }
 
+a{
+    color: var(--black);
+}
 
+.navbar-brand:hover{
+    color: var(--black);
+    text-decoration: underline;
+}
 body {
     font-family: Manrope, sans-serif;
     background-color: var(--grey);

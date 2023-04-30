@@ -99,8 +99,18 @@
                             <div class="card-body">
                                 <h1 class="card-title fw-bold"><%= vinyl.title%></h1>
                                 <p class="card-text text-muted">Artist</p>
-                                <p class="card-text text-muted"><a href="/vinyls/<%=vinyl.vinyl_id%>/add-tracks">Add tracks</a></p>
+                                <p class="card-text text-muted"><a href="/vinyls/<%=vinyl.vinyl_id%>/add-tracks"><i
+                                            class="bi bi-file-plus-fill"></i>Add tracks</a></p>
                         </div>
+                         <div class="col-md-6">
+                             <form id="delete-collection-form" action="/vinyls/<%= vinylId %>?_method=DELETE"
+                                 method="POST" style="display: none;">
+                                 <input type="hidden" name="_method" value="DELETE">
+                             </form>
+                             <button class="btn delete-btn"
+                                 onclick="document.getElementById('delete-collection-form').submit();"><i
+                                     class="bi bi-trash me-2"></i>Delete Vinyl</button>
+                         </div>
                     </div>
                     <div class="mt-5"> <% tracks.forEach((track) => { %>      <ul class="list-unstyled">
                                 <li class="d-flex align-items-center border-bottom pb-2 mb-2">
@@ -117,29 +127,26 @@
                 </div>
                 <!-- END Collection and Albums -->
             </div>
-        </div>
-       <!-- USER AND COMMENTS  -->
-                <!-- User info -->
-                <!-- END User info  -->  
+        </div> 
          <!-- END Main Content  -->
-        <!-- Footer  -->
-        <div class="container-fluid">
-            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top footer"
-                style="margin-left: 15rem;">
-                <div class="col-md-4 d-flex align-items-center">
-                    <span class="mb-3 mb-md-0 text-muted">&copy; StacksOfWax</span>
-                </div>
-                <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-                    <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-twitter"
-                                style="font-size: 24px;"></i></a></li>
-                    <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-instagram"
-                                style="font-size: 24px;"></i></a></li>
-                    <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-facebook"
-                                style="font-size: 24px;"></i></a></li>
-                </ul>
-            </footer>
-        </div>
-        <!-- END Footer  -->
+         <!-- Footer  -->
+         <div class="container">
+             <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
+                 style="margin-left: 15rem;">
+                 <div class="col-md-4 d-flex align-items-center">
+                     <span class="mb-3 mb-md-0 text-muted">&copy; StacksOfWax</span>
+                 </div>
+                 <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                     <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-twitter"
+                                 style="font-size: 24px;"></i></a></li>
+                     <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-instagram"
+                                 style="font-size: 24px;"></i></a></li>
+                     <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-facebook"
+                                 style="font-size: 24px;"></i></a></li>
+                 </ul>
+             </footer>
+         </div>
+         <!-- END Footer  -->
     </div>
      <!-- media queries navbar -->
      <script>

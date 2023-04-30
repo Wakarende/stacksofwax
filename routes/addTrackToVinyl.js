@@ -32,7 +32,7 @@ router.get('/vinyls/:vinylId/add-tracks',(req,res)=>{
                    session: req.session,
                  });
             }else{
-                res.send('Unauthorized');
+                res.send('You cannot add tracks to vinyls that are not yours!');
             }
         }
     });

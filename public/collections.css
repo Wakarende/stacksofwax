@@ -4,7 +4,14 @@
     --grey: #f7f8f9;
 }
 
+a{
+    color: var(--black);
+}
 
+.navbar-brand:hover{
+    color: var(--black);
+    text-decoration: underline;
+}
 body {
     font-family: Manrope, sans-serif;
      background-color: var(--grey);
@@ -105,12 +112,12 @@ body {
 .offcanvas-collapse.open{
     transform: translateX(-100%);
 }
-
+/* 
 @media(min-width: 786px){
     .offcanvas-collapse{
         transform: translateX(0);
     }
-}
+} */
 /* /main content  */
 .main-content {
     /* padding-top: 56px; */
