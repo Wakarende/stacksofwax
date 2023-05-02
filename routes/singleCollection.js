@@ -11,6 +11,7 @@ router.get("/collections/:id", (req, res) => {
                     INNER JOIN vinyl on vinyl_collections.vinyl_id = vinyl.vinyl_id
                     INNER JOIN users on collection.user_id = users.user_id
                     WHERE vinyl_collections.collection_id = ?;`;
+
   //comments query
   const commentsQuery = `SELECT collections_review.*, users.*, COUNT(comment_likes.like_id) AS likes
     FROM collections_review 
@@ -75,32 +76,79 @@ router.post('/collections/:id/comment', (req,res)=>{
 });
 
 
-//like 
+// //like 
+// router.post("/collections/:id/comment/:comment_id/like", (req, res) => {
+//   const { id, comment_id } = req.params;
+//   const { user } = req.session;
+//   const query = `INSERT INTO comment_likes (user_id, comment_id) VALUES (?, ?)`;
+
+//   // Avoid duplicate likes by the same user
+//   const checkQuery = `SELECT * FROM comment_likes WHERE user_id = ? AND comment_id = ?`;
+
+//   connection.query(checkQuery, [user.id, comment_id], (err, results) => {
+//     if (err) {
+//       console.log(err);
+//     } else if (results.length > 0) {
+//       // User has already liked this comment
+//       res.send("You have already liked this comment!");
+//     } else {
+//       connection.query(query, [user.id, comment_id], (err, results) => {
+//         if (err) {
+//           console.log(err);
+//         } else {
+//           res.redirect(`/collections/${id}`);
+//         }
+//       });
+//     }
+//   });
+// });
+
+//like
 router.post("/collections/:id/comment/:comment_id/like", (req, res) => {
   const { id, comment_id } = req.params;
   const { user } = req.session;
-  const query = `INSERT INTO comment_likes (user_id, comment_id) VALUES (?, ?)`;
 
-  // Avoid duplicate likes by the same user
+  // SQL queries
   const checkQuery = `SELECT * FROM comment_likes WHERE user_id = ? AND comment_id = ?`;
+  const insertQuery = `INSERT INTO comment_likes (user_id, comment_id) VALUES (?, ?)`;
+  const updateLikesQuery = `UPDATE collections_review SET likes = likes + 1 WHERE collections_review_id = ?`;
 
+  // Check if user has already liked this comment
   connection.query(checkQuery, [user.id, comment_id], (err, results) => {
     if (err) {
       console.log(err);
-    } else if (results.length > 0) {
+      res.status(500).send("Server error");
+      return;
+    }
+    if (results.length > 0) {
       // User has already liked this comment
-      res.send("You have already liked this comment!");
-    } else {
-      connection.query(query, [user.id, comment_id], (err, results) => {
+      res.send("You have already liked this comment");
+      return;
+    }
+
+    // Insert like into comment_likes
+    connection.query(insertQuery, [user.id, comment_id], (err, results) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send("Server error");
+        return;
+      }
+
+      // Update like count in comments
+      connection.query(updateLikesQuery, [comment_id], (err, results) => {
         if (err) {
           console.log(err);
-        } else {
-          res.redirect(`/collections/${id}`);
+          res.status(500).send("Server error");
+          return;
         }
+
+        // All successful
+        res.send("OK");
       });
-    }
+    });
   });
 });
+
 
 
 // Update collection name
