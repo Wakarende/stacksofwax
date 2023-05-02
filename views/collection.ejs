@@ -247,7 +247,16 @@
          function likeComment(collectionId, commentId) {
              fetch(`/collections/${collectionId}/comment/${commentId}/like`, {
                  method: 'POST'
-             }).then(response => response.text()).then(data => {
+             }).then(response => {
+                //redirect if user is not logged in. 
+                 if (response.redirected) {
+                    alert("You must be logged in to like comments");
+                    window.location.href = "/login";
+                    throw new Error("Redirected to login");
+                 } else {
+                     return response.text();
+                 }
+             }).then(data => {
                  if (data === 'OK') {
                      window.location.reload();
                  } else {

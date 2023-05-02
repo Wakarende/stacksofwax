@@ -60,52 +60,38 @@ router.get("/collections/:id", (req, res) => {
 
 //add comments
 router.post('/collections/:id/comment', (req,res)=>{
+
+  if(!req.session.user){
+    res.redirect('/login');
+    return;
+  }
+
   const collectionId = req.params.id;
   const comment = req.body.comment;
   const userId = req.session.user.id;
 
-  const query = `INSERT INTO collections_review(collection_id,user_id,comment) VALUES (?,?,?);`;
+  const query = `INSERT INTO collections_review(collection_id,user_id,comment,likes) VALUES (?,?,?,0);`;
 
   connection.query(query,[collectionId,userId,comment],(err,results)=>{
       if(err){
         console.log(err);
+        res.send('cannot add comment');
       }else{
         res.redirect(`/collections/${collectionId}`);
       }
   });
 });
 
-
-// //like 
-// router.post("/collections/:id/comment/:comment_id/like", (req, res) => {
-//   const { id, comment_id } = req.params;
-//   const { user } = req.session;
-//   const query = `INSERT INTO comment_likes (user_id, comment_id) VALUES (?, ?)`;
-
-//   // Avoid duplicate likes by the same user
-//   const checkQuery = `SELECT * FROM comment_likes WHERE user_id = ? AND comment_id = ?`;
-
-//   connection.query(checkQuery, [user.id, comment_id], (err, results) => {
-//     if (err) {
-//       console.log(err);
-//     } else if (results.length > 0) {
-//       // User has already liked this comment
-//       res.send("You have already liked this comment!");
-//     } else {
-//       connection.query(query, [user.id, comment_id], (err, results) => {
-//         if (err) {
-//           console.log(err);
-//         } else {
-//           res.redirect(`/collections/${id}`);
-//         }
-//       });
-//     }
-//   });
-// });
-
 //like
 router.post("/collections/:id/comment/:comment_id/like", (req, res) => {
-  const { id, comment_id } = req.params;
+
+  if (!req.session.user) {
+    res.redirect("/login");
+    return;
+  }
+
+
+  const {comment_id } = req.params;
   const { user } = req.session;
 
   // SQL queries
@@ -150,7 +136,6 @@ router.post("/collections/:id/comment/:comment_id/like", (req, res) => {
 });
 
 
-
 // Update collection name
 router.put('/collections/:collectionId', (req, res) => {
   if (!req.session.user) {
@@ -161,7 +146,7 @@ router.put('/collections/:collectionId', (req, res) => {
   const collectionId = req.params.collectionId;
   const newCollectionName = req.body.name; // new name
 
-  const updateCollection = `UPDATE collection SET collection_name = ?, WHERE collection_id = ? AND user_id = ?;`;
+  const updateCollection = `UPDATE collection SET collection_name = ? WHERE collection_id = ? AND user_id = ?;`;
 
   connection.query(updateCollection, [newCollectionName, collectionId, req.session.user.id], (err, results) => {
     if (err) {

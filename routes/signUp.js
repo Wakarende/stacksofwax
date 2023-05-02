@@ -3,7 +3,7 @@ const router = express.Router();
 const connection = require("../connection");
 const bcrypt = require("bcrypt");
 
-const MIN_PASSWORD_LENGTH = 8;
+
 
 router.get("/sign-up", (req, res) => {
   res.render("sign-up");
