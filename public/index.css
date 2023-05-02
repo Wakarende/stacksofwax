@@ -11,6 +11,7 @@ background-repeat: no-repeat;
 background-size: cover;
 background-color: var(--black);
 color: white;
+background: linear-gradient(to right, #1d2931, #070a0c);
 }
 
 h1,h2,h3,h4,h5{
@@ -81,6 +82,9 @@ h1,h2,h3,h4,h5{
 /* END Header and Navbar  */
 
 /* Footer  */
+/* footer{
+  background: linear-gradient(to right, #1d2931, #070a0c);
+} */
  .bd-placeholder-img {
    font-size: 1.125rem;
    text-anchor: middle;

@@ -149,6 +149,33 @@ a{
     justify-content: start;
 }
 
+.btn-edit{
+    background-color: none;
+    color: var(--green);
+}
+
+.btn-edit:hover{
+    text-decoration: underline;
+}
+
+.title{
+    display: flex;
+    align-items: center;
+}
+.btn-update{
+    background-color: none;
+    border: solid 1px var(--green);
+    border-radius: 10px;
+    color: var(--green);
+}
+
+.update-form{
+    display: flex;
+}
+.btn-update:hover{
+    text-decoration: underline;
+    color: var(--green);
+}
 /* Comment section  */
 .comment-section{
     display: flex;

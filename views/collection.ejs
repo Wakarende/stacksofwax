@@ -57,6 +57,7 @@
         <!-- END navbar -->
         <!-- Sidebar  -->
         <div class="row">
+            <div class="offcanvas offcanvas-start col-md-2 col-lg-1 d-md-block" id="offcanvasExample">
             <nav id="sidebar" class="col-md-2 col-lg-1 d-md-block sidebar offcanvas-collapse">
                 <a href="/" class="navbar-brand d-lg-none">StacksOfWax</a>
                 <div class="sidebar-sticky">
@@ -84,8 +85,12 @@
                     </ul>
                 </div>
             </nav>
+            </div>
         
         <!-- END Sidebar  -->
+        <div class="col offcanvas-body">
+
+       
         <!-- MAIN content  -->
         <div class="main-content container-fluid">
             <!-- Collection and Albums  -->
@@ -97,16 +102,17 @@
                         </div>
                         <div class="col-md-6">
                             <div class="card-body">
-                                <h1 class="card-title fw-bold"><%= collection.collection_name%></h1>
-                                <button id="edit-button">Edit Collection Name</button>
-                                <form action="/collections/<%= collection.collection_id %>?_method=PUT" method="POST"
+                                <div class="title">
+                                    <h1 class="card-title fw-bold"><%= collection.collection_name%></h1>
+                                    <button id="edit-button" class="btn btn-edit m-2">Edit Collection Name</button>
+                                </div>
+                                <form class="update-form"action="/collections/<%= collection.collection_id %>?_method=PUT" method="POST"
                                     id="update-collection-name-form" style="display: none;">
                                     <label for="new-collection-name">New Collection Name:</label>
                                     <input type="text" name="name" id="new-collection-name"
                                         value="<%= collection.name %>" required>
-                                    <button type="submit">Update Name</button>
+                                        <button type="submit" class="btn btn-update">Update Name</button>
                                 </form>
-
                                 <p class="card-text text-muted"><%=collection.collection_description%></p>
                                 <a class="card-text add-vinyl" href="/collections/<%=collection.collection_id%>/add-vinyls"><i
                                         class="bi bi-file-plus-fill"></i> Add Vinyl</a>
@@ -123,6 +129,7 @@
                         </div>
                     </div>
                     <div class="mt-5"> <% vinyls.forEach((vinyl) => { %>      <ul class="list-unstyled">
+                                <a href="/vinyls/<%=vinyl.vinyl_id%>">
                                 <li class="d-flex align-items-center border-bottom pb-2 mb-2">
                                     <span class="me-2"></span>
                                     <i class="bi bi-plus-square me-2"></i>
@@ -134,12 +141,14 @@
                                     </div>
                                     <span class="ms-auto"><%= vinyl.release_year %></span>
                                 </li>
+                                </a>
                             </ul> 
                   <% }); %>
                     </div>
                 </div>
                 <!-- END Collection and Albums -->
             </div>
+        </div>
         </div>
        <!-- USER AND COMMENTS  -->
         <div class="row d-flex justify-content-center align-items-center container-fluid">

@@ -112,12 +112,12 @@ body {
 .offcanvas-collapse.open{
     transform: translateX(-100%);
 }
-/* 
+
 @media(min-width: 786px){
     .offcanvas-collapse{
         transform: translateX(0);
     }
-} */
+} 
 /* /main content  */
 .main-content {
     /* padding-top: 56px; */

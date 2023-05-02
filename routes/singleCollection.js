@@ -113,7 +113,7 @@ router.put('/collections/:collectionId', (req, res) => {
   const collectionId = req.params.collectionId;
   const newCollectionName = req.body.name; // new name
 
-  const updateCollection = `UPDATE collection SET collection_name = ? WHERE collection_id = ? AND user_id = ?;`;
+  const updateCollection = `UPDATE collection SET collection_name = ?, WHERE collection_id = ? AND user_id = ?;`;
 
   connection.query(updateCollection, [newCollectionName, collectionId, req.session.user.id], (err, results) => {
     if (err) {

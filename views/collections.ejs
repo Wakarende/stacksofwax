@@ -55,7 +55,8 @@
        <!-- END navbar -->
       <!-- Sidebar  -->
       <div class="row">
-          <nav id="sidebar" class="col-md-2 col-lg-1 d-md-block sidebar">
+          <nav id="sidebar" class="col-md-2 col-lg-1 d-md-block sidebar offcanvas-collapse">
+              <a href="/" class="navbar-brand d-lg-none text-black">StacksOfWax</a>
               <div class="sidebar-sticky">
                   <ul class="nav flex-column">
                       <li class="nav-item">
@@ -64,13 +65,25 @@
                       <li class="nav-item">
                           <a class="nav-link" href="/collections"> Collections </a>
                       </li>
-                       <li class="nav-item">
-                          <a class="nav-link" href="/profile">My Library </a>
-                      </li> 
+                      <li class="nav-item">
+                          <a class="nav-link" href="/profile"> My Library</a>
+                      </li>
+                  </ul>
+                  <ul class="nav flex-column d-lg-none">
+                      <li class="nav-item">
+                          <a href="/collections" class="nav-link">Collections</a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="/sign-up" class="nav-link">Sign up</a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="/logout" class="nav-link">Logout</a>
+                      </li>
                   </ul>
               </div>
           </nav>
-      </div>
+        </div>
+        <div class="col offcanvas-body">
         <!-- MAIN content  -->
         <div class="main-content container-fluid">
             <div class="d-flex justify-content-center">
@@ -91,6 +104,7 @@
                     </div> <% }) %>
                 </div>
             </div>
+        </div>
         </div>
         <!-- END Main Content  -->
         <!-- Footer  -->
