@@ -56,7 +56,8 @@
         <!-- END navbar -->
         <!-- Sidebar  -->
         <div class="row">
-            <nav id="sidebar" class="col-md-2 col-lg-1 d-md-block sidebar">
+            <nav id="sidebar" class="col-md-2 col-lg-1 d-md-block sidebar offcanvas-collapse">
+                <a href="/" class="navbar-brand d-lg-none text-black">StacksOfWax</a>
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
@@ -66,15 +67,24 @@
                             <a class="nav-link" href="/collections"> Collections </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"> Library </a>
+                            <a class="nav-link" href="/profile"> My Library</a>
+                        </li>
+                    </ul>
+                    <ul class="nav flex-column d-lg-none">
+                        <li class="nav-item">
+                            <a href="/collections" class="nav-link">Collections</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/profile">My Library </a>
+                            <a href="/sign-up" class="nav-link">Sign up</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/logout" class="nav-link">Logout</a>
                         </li>
                     </ul>
                 </div>
             </nav>
         </div>
+        <!-- END Sidebar  -->
         <!-- MAIN content  -->
         <div class="container d-flex justify-content-center">
              <form action="/vinyls/<%=vinylId%>/add-tracks" method="POST" class="" style="margin-top: 150px;">
